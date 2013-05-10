@@ -11,7 +11,7 @@ public:
 	OperatorTree(const std::string &expression);
 	~OperatorTree();
 
-	std::vector<OperatorNode> getNodesInOrder() const;
+	std::vector<const OperatorNode*> getNodesInOrder() const;
 	bool parsingFailed() const;
 
 private:

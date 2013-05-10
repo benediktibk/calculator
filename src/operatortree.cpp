@@ -14,9 +14,9 @@ OperatorTree::~OperatorTree()
 	m_rootNode = 0;
 }
 
-vector<OperatorNode> OperatorTree::getNodesInOrder() const
+std::vector<const OperatorNode*> OperatorTree::getNodesInOrder() const
 {
-	return vector<OperatorNode>();
+	return vector<const OperatorNode*>();
 }
 
 bool OperatorTree::parsingFailed() const
