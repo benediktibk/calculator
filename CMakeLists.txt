@@ -6,10 +6,14 @@ find_library(CPPUNIT_LIBRARY cppunit)
 set(SRC_LIST
 	src/operatornode.cpp
 	src/operatortree.cpp
+	src/binaryoperatornode.cpp
+	src/valueoperatornode.cpp
 )
 
 set(SRC_TEST_LIST
 	src/operatortreetest.cpp
+	src/binaryoperatornodetest.cpp
+	src/valueoperatornodetest.cpp
 )
 
 set(CMAKE_CXX_FLAGS_COMMON "-Wall -Wextra -Werror -ansi -g")

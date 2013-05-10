@@ -7,3 +7,11 @@ incl/operatortree.h
 src/operatortree.cpp
 incl/operatortreetest.h
 src/operatortreetest.cpp
+incl/binaryoperatornode.h
+incl/binaryoperatornodetest.h
+incl/valueoperatornode.h
+incl/valueoperatornodetest.h
+src/binaryoperatornode.cpp
+src/binaryoperatornodetest.cpp
+src/valueoperatornode.cpp
+src/valueoperatornodetest.cpp
