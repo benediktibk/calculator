@@ -5,9 +5,11 @@ find_library(CPPUNIT_LIBRARY cppunit)
 
 set(SRC_LIST
 	src/operatornode.cpp
+	src/operatortree.cpp
 )
 
 set(SRC_TEST_LIST
+	src/operatortreetest.cpp
 )
 
 set(CMAKE_CXX_FLAGS_COMMON "-Wall -Wextra -Werror -ansi -g")

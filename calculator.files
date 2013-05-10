@@ -3,3 +3,7 @@ src/testrunner.cpp
 src/main.cpp
 incl/operatornode.h
 src/operatornode.cpp
+incl/operatortree.h
+src/operatortree.cpp
+incl/operatortreetest.h
+src/operatortreetest.cpp
