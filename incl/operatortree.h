@@ -12,10 +12,10 @@ public:
 	~OperatorTree();
 
 	std::vector<const OperatorNode*> getNodesInOrder() const;
+	void parse(std::string expression);
 	bool parsingFailed() const;
 
 private:
-	const std::string m_expression;
 	OperatorNode *m_rootNode;
 	bool m_parsingFailed;
 };
