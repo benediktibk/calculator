@@ -1,0 +1,5 @@
+CMakeLists.txt
+src/testrunner.cpp
+src/main.cpp
+incl/operatornode.h
+src/operatornode.cpp
