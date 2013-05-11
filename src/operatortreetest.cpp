@@ -14,13 +14,13 @@ void OperatorTreeTest::constructor_validStringWithAdditionSubtractionMultiplicat
 	CPPUNIT_ASSERT(!tree.parsingFailed());
 }
 
-void OperatorTreeTest::getNodesInOrder_emptyExpression_resultSizeIs0()
+void OperatorTreeTest::getNodesInOrder_emptyExpression_resultSizeIs1()
 {
 	OperatorTree tree("");
 
 	vector<const OperatorNode*> nodes = tree.getNodesInOrder();
 
-	CPPUNIT_ASSERT_EQUAL((size_t)0, nodes.size());
+	CPPUNIT_ASSERT_EQUAL((size_t)1, nodes.size());
 }
 
 void OperatorTreeTest::getNodesInOrder_oneValue_resultSizeIs1()

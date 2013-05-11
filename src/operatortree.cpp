@@ -20,16 +20,22 @@ OperatorTree::~OperatorTree()
 	m_rootNode = 0;
 }
 
-std::vector<const OperatorNode*> OperatorTree::getNodesInOrder() const
+vector<const OperatorNode*> OperatorTree::getNodesInOrder() const
 {
-	return vector<const OperatorNode*>();
+	vector<const OperatorNode*> result;
+	m_rootNode->addNodesInOrder(result);
+	return result;
 }
 
 void OperatorTree::parse(string expression)
 {
 	m_parsingFailed = false;
 	remove(expression.begin(), expression.end(), ' ');
-	m_rootNode = parseRecursive(expression);
+
+	if (expression.size() == 0)
+		m_rootNode = new ValueOperatorNode(0);
+	else
+		m_rootNode = parseRecursive(expression);
 }
 
 OperatorNode *OperatorTree::parseRecursive(const string &expression)
