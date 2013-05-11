@@ -16,7 +16,13 @@ set(SRC_TEST_LIST
 	src/valueoperatornodetest.cpp
 )
 
-set(CMAKE_CXX_FLAGS_COMMON "-Wall -Wextra -Werror -ansi -g")
+if(NOT CMAKE_BUILD_TYPE)
+  set(CMAKE_BUILD_TYPE debug)
+endif()
+
+set(CMAKE_CXX_FLAGS_COMMON "-Wall -Wextra -Werror -ansi")
+set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_COMMON} -O3 -DNDEBUG")
+set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_COMMON} -g")
 
 include_directories(
 	${CMAKE_SOURCE_DIR}/incl

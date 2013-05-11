@@ -45,6 +45,9 @@ double BinaryOperatorNode::getValue() const
 	case BinaryOperationTypeDivision:
 		return leftValue / rightValue;
 	}
+
+	assert(false);
+	return 0;
 }
 
 void BinaryOperatorNode::setLeftNode(OperatorNode *node)

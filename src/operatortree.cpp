@@ -27,6 +27,7 @@ std::vector<const OperatorNode*> OperatorTree::getNodesInOrder() const
 
 void OperatorTree::parse(string expression)
 {
+	m_parsingFailed = false;
 	remove(expression.begin(), expression.end(), ' ');
 	m_rootNode = parseRecursive(expression);
 }
@@ -77,7 +78,7 @@ OperatorNode *OperatorTree::parseRecursive(const string &expression)
 	}
 	else if (multiplicationsAndDivisions.size() > 0)
 	{
-		string::const_iterator selectedOperator = additionsAndSubtractions[0];
+		string::const_iterator selectedOperator = multiplicationsAndDivisions[0];
 		string::const_iterator positionAfterOperator = selectedOperator;
 		++positionAfterOperator;
 		string firstPart(expression.begin(), selectedOperator);
