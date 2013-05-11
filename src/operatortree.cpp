@@ -1,5 +1,6 @@
 #include "operatortree.h"
 #include <algorithm>
+#include <assert.h>
 
 using namespace std;
 
@@ -99,4 +100,12 @@ vector<size_t> OperatorTree::findOperatorPositions(const string &expression, cha
 bool OperatorTree::parsingFailed() const
 {
 	return m_parsingFailed;
+}
+
+double OperatorTree::calculateValue() const
+{
+	if(m_parsingFailed)
+		return 0;
+
+	return m_rootNode->getValue();
 }

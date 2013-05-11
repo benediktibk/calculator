@@ -13,6 +13,7 @@ public:
 
 	std::vector<const OperatorNode*> getNodesInOrder() const;
 	bool parsingFailed() const;
+	double calculateValue() const;
 
 private:
 	void parse(std::string expression);
