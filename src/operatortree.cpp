@@ -49,7 +49,7 @@ OperatorNode *OperatorTree::parseRecursive(const string &expression)
 	for (vector<OperatorTree::bracketPair>::const_iterator i = topLevelBrackets.begin(); i != topLevelBrackets.end(); ++i)
 	{
 		if (i->first == expression.begin() && i->second == lastPosition)
-			return parseRecursive(string(++expression.begin(), --(--expression.end())));
+			return parseRecursive(string(++expression.begin(), --expression.end()));
 	}
 
 	if (additionsAndSubtractions.size() > 0)
