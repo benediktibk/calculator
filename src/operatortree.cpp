@@ -64,34 +64,34 @@ string::const_iterator OperatorTree::findClosingBracket(const string &expression
 	return expression.end();
 }
 
-vector<size_t> OperatorTree::findMultiplicationsAndDivisions(const string &expression)
+vector<string::const_iterator> OperatorTree::findMultiplicationsAndDivisions(const string &expression)
 {
-	vector<size_t> multiplications = findOperatorPositions(expression, '*');
-	vector<size_t> divisions = findOperatorPositions(expression, '/');
-	vector<size_t> result;
+	vector<string::const_iterator> multiplications = findOperatorPositions(expression, '*');
+	vector<string::const_iterator> divisions = findOperatorPositions(expression, '/');
+	vector<string::const_iterator> result;
 	result.reserve(multiplications.size() + divisions.size());
 	result.insert(result.end(), multiplications.begin(), multiplications.end());
 	result.insert(result.end(), divisions.begin(), divisions.end());
 	return result;
 }
 
-vector<size_t> OperatorTree::findAdditionsAndSubtractions(const string &expression)
+vector<string::const_iterator> OperatorTree::findAdditionsAndSubtractions(const string &expression)
 {
-	vector<size_t> additions = findOperatorPositions(expression, '+');
-	vector<size_t> subtractions = findOperatorPositions(expression, '-');
-	vector<size_t> result;
+	vector<string::const_iterator> additions = findOperatorPositions(expression, '+');
+	vector<string::const_iterator> subtractions = findOperatorPositions(expression, '-');
+	vector<string::const_iterator> result;
 	result.reserve(additions.size() + subtractions.size());
 	result.insert(result.end(), additions.begin(), additions.end());
 	result.insert(result.end(), subtractions.begin(), subtractions.end());
 	return result;
 }
 
-vector<size_t> OperatorTree::findOperatorPositions(const string &expression, char operation)
+vector<string::const_iterator> OperatorTree::findOperatorPositions(const string &expression, char operation)
 {
-	vector<size_t> result;
+	vector<string::const_iterator> result;
 
-	for (size_t i = 0; i < expression.size(); ++i)
-		if (expression[i] == operation)
+	for (string::const_iterator i = expression.begin(); i != expression.end(); ++i)
+		if (*i == operation)
 			result.push_back(i);
 
 	return result;
