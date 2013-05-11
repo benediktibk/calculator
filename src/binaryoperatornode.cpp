@@ -27,6 +27,26 @@ void BinaryOperatorNode::addNodesInOrder(vector<const OperatorNode *> &nodes) co
 	m_right->addNodesInOrder(nodes);
 }
 
+double BinaryOperatorNode::getValue() const
+{
+	assert(leftAndRightSet());
+
+	double leftValue = m_left->getValue();
+	double rightValue = m_right->getValue();
+
+	switch(m_operationType)
+	{
+	case BinaryOperationTypeAddition:
+		return leftValue + rightValue;
+	case BinaryOperationTypeSubtraction:
+		return leftValue - rightValue;
+	case BinaryOperationTypeMultiplication:
+		return leftValue * rightValue;
+	case BinaryOperationTypeDivision:
+		return leftValue / rightValue;
+	}
+}
+
 void BinaryOperatorNode::setLeftNode(OperatorNode *node)
 {
 	assert(m_left == 0);

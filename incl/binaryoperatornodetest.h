@@ -14,6 +14,10 @@ class BinaryOperatorNodeTest :
 	 CPPUNIT_TEST(leftAndRightSet_bothSet_true);
 	 CPPUNIT_TEST(addNodesInOrder_leftAndRightValueNodeSet_resultSizeIs3);
 	 CPPUNIT_TEST(addNodesInOrder_leftAndRightValueNodeSet_secondNodeIsRoot);
+	 CPPUNIT_TEST(getValue_additionAndLeftValue6AndRightValue2_8);
+	 CPPUNIT_TEST(getValue_subtractionAndLeftValue6AndRightValue2_4);
+	 CPPUNIT_TEST(getValue_multiplicationAndLeftValue6AndRightValue2_12);
+	 CPPUNIT_TEST(getValue_divisionAndLeftValue6AndRightValue2_3);
 	 CPPUNIT_TEST_SUITE_END();
 
 private:
@@ -23,6 +27,10 @@ private:
 	 void leftAndRightSet_bothSet_true();
 	 void addNodesInOrder_leftAndRightValueNodeSet_resultSizeIs3();
 	 void addNodesInOrder_leftAndRightValueNodeSet_secondNodeIsRoot();
+	 void getValue_additionAndLeftValue6AndRightValue2_8();
+	 void getValue_subtractionAndLeftValue6AndRightValue2_4();
+	 void getValue_multiplicationAndLeftValue6AndRightValue2_12();
+	 void getValue_divisionAndLeftValue6AndRightValue2_3();
 };
 
 #endif

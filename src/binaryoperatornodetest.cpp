@@ -62,3 +62,39 @@ void BinaryOperatorNodeTest::addNodesInOrder_leftAndRightValueNodeSet_secondNode
 
 	CPPUNIT_ASSERT_EQUAL(nodeConst, result[1]);
 }
+
+void BinaryOperatorNodeTest::getValue_additionAndLeftValue6AndRightValue2_8()
+{
+	BinaryOperatorNode node(BinaryOperationTypeAddition);
+	node.setLeftNode(new ValueOperatorNode(6));
+	node.setRightNode(new ValueOperatorNode(2));
+
+	CPPUNIT_ASSERT_DOUBLES_EQUAL(8, node.getValue(), 0.0001);
+}
+
+void BinaryOperatorNodeTest::getValue_subtractionAndLeftValue6AndRightValue2_4()
+{
+	BinaryOperatorNode node(BinaryOperationTypeSubtraction);
+	node.setLeftNode(new ValueOperatorNode(6));
+	node.setRightNode(new ValueOperatorNode(2));
+
+	CPPUNIT_ASSERT_DOUBLES_EQUAL(4, node.getValue(), 0.0001);
+}
+
+void BinaryOperatorNodeTest::getValue_multiplicationAndLeftValue6AndRightValue2_12()
+{
+	BinaryOperatorNode node(BinaryOperationTypeMultiplication);
+	node.setLeftNode(new ValueOperatorNode(6));
+	node.setRightNode(new ValueOperatorNode(2));
+
+	CPPUNIT_ASSERT_DOUBLES_EQUAL(12, node.getValue(), 0.0001);
+}
+
+void BinaryOperatorNodeTest::getValue_divisionAndLeftValue6AndRightValue2_3()
+{
+	BinaryOperatorNode node(BinaryOperationTypeDivision);
+	node.setLeftNode(new ValueOperatorNode(6));
+	node.setRightNode(new ValueOperatorNode(2));
+
+	CPPUNIT_ASSERT_DOUBLES_EQUAL(3, node.getValue(), 0.0001);
+}

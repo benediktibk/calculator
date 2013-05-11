@@ -12,6 +12,7 @@ public:
 	virtual ~BinaryOperatorNode();
 
 	virtual void addNodesInOrder(std::vector<const OperatorNode*> &nodes) const;
+	virtual double getValue() const;
 	void setLeftNode(OperatorNode *node);
 	void setRightNode(OperatorNode *node);
 	bool leftAndRightSet() const;

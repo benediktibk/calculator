@@ -11,7 +11,7 @@ public:
 	ValueOperatorNode(double value);
 
 	virtual void addNodesInOrder(std::vector<const OperatorNode *> &nodes) const;
-	double getValue() const;
+	virtual double getValue() const;
 
 private:
 	const double m_value;
