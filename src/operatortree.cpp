@@ -60,7 +60,7 @@ OperatorNode *OperatorTree::parseRecursive(const string &expression)
 
 	if (additionsAndSubtractions.size() > 0)
 	{
-		string::const_iterator selectedOperator = additionsAndSubtractions[0];
+		string::const_iterator selectedOperator = additionsAndSubtractions.back();
 		string::const_iterator positionAfterOperator = selectedOperator;
 		++positionAfterOperator;
 		string firstPart(expression.begin(), selectedOperator);
@@ -84,7 +84,7 @@ OperatorNode *OperatorTree::parseRecursive(const string &expression)
 	}
 	else if (multiplicationsAndDivisions.size() > 0)
 	{
-		string::const_iterator selectedOperator = multiplicationsAndDivisions[0];
+		string::const_iterator selectedOperator = multiplicationsAndDivisions.back();
 		string::const_iterator positionAfterOperator = selectedOperator;
 		++positionAfterOperator;
 		string firstPart(expression.begin(), selectedOperator);
