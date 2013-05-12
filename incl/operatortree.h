@@ -37,6 +37,8 @@ private:
 	OperatorNode* parseRecursive(const std::string &expression);
 	OperatorNode* parseIfAllEnclosedInBrackets(const std::string &expression, const std::vector<OperatorTree::bracketPair> &brackets);
 	OperatorNode* parseIfNotEnclosedInBrackets(const std::string &expression, const std::vector<OperatorTree::bracketPair> &brackets);
+	OperatorNode* parseBinaryOperator(const std::string &expression, const std::string::const_iterator &selectedOperator);
+	OperatorNode* parseValue(const std::string &valueString);
 	std::vector<bracketPair> findTopLevelBracketPairs(const std::string &expression);
 	std::string::const_iterator findOpeningBracket(const std::string &expression);
 	std::string::const_iterator findOpeningBracket(const std::string &expression, const std::string::const_iterator &start);

@@ -74,59 +74,53 @@ OperatorNode *OperatorTree::parseIfNotEnclosedInBrackets(const string &expressio
 	if (additionsAndSubtractions.size() > 0)
 	{
 		string::const_iterator selectedOperator = additionsAndSubtractions.back();
-		string::const_iterator positionAfterOperator = selectedOperator;
-		++positionAfterOperator;
-		string firstPart(expression.begin(), selectedOperator);
-		string secondPart(positionAfterOperator, expression.end());
-		BinaryOperationType operationType;
+		return parseBinaryOperator(expression, selectedOperator);
 
-		if (*selectedOperator == '+')
-			operationType = BinaryOperationTypeAddition;
-		else if (*selectedOperator == '-')
-			operationType = BinaryOperationTypeSubtraction;
-		else
-			assert(false);
-
-		BinaryOperatorNode *node = new BinaryOperatorNode(operationType);
-		OperatorNode *leftNode = parseRecursive(firstPart);
-		OperatorNode *rightNode = parseRecursive(secondPart);
-		node->setLeftNode(leftNode);
-		node->setRightNode(rightNode);
-
-		return node;
 	}
 	else if (multiplicationsAndDivisions.size() > 0)
 	{
 		string::const_iterator selectedOperator = multiplicationsAndDivisions.back();
-		string::const_iterator positionAfterOperator = selectedOperator;
-		++positionAfterOperator;
-		string firstPart(expression.begin(), selectedOperator);
-		string secondPart(positionAfterOperator, expression.end());
-		BinaryOperationType operationType;
-
-		if (*selectedOperator == '*')
-			operationType = BinaryOperationTypeMultiplication;
-		else if (*selectedOperator == '/')
-			operationType = BinaryOperationTypeDivision;
-		else
-			assert(false);
-
-		BinaryOperatorNode *node = new BinaryOperatorNode(operationType);
-		OperatorNode *leftNode = parseRecursive(firstPart);
-		OperatorNode *rightNode = parseRecursive(secondPart);
-		node->setLeftNode(leftNode);
-		node->setRightNode(rightNode);
-
-		return node;
+		return parseBinaryOperator(expression, selectedOperator);
 	}
 	else
-	{
-		double value;
-		stringstream stream(expression);
-		stream >> value;
-		ValueOperatorNode *node = new ValueOperatorNode(value);
-		return node;
-	}
+		return parseValue(expression);
+}
+
+OperatorNode *OperatorTree::parseBinaryOperator(const string &expression, const string::const_iterator &selectedOperator)
+{
+	string::const_iterator positionAfterOperator = selectedOperator;
+	++positionAfterOperator;
+	string firstPart(expression.begin(), selectedOperator);
+	string secondPart(positionAfterOperator, expression.end());
+	BinaryOperationType operationType;
+
+	if (*selectedOperator == '+')
+		operationType = BinaryOperationTypeAddition;
+	else if (*selectedOperator == '-')
+		operationType = BinaryOperationTypeSubtraction;
+	else if (*selectedOperator == '*')
+		operationType = BinaryOperationTypeMultiplication;
+	else if (*selectedOperator == '/')
+		operationType = BinaryOperationTypeDivision;
+	else
+		assert(false);
+
+	BinaryOperatorNode *node = new BinaryOperatorNode(operationType);
+	OperatorNode *leftNode = parseRecursive(firstPart);
+	OperatorNode *rightNode = parseRecursive(secondPart);
+	node->setLeftNode(leftNode);
+	node->setRightNode(rightNode);
+
+	return node;
+}
+
+OperatorNode *OperatorTree::parseValue(const string &valueString)
+{
+	double value;
+	stringstream stream(valueString);
+	stream >> value;
+	ValueOperatorNode *node = new ValueOperatorNode(value);
+	return node;
 }
 
 vector<OperatorTree::bracketPair> OperatorTree::findTopLevelBracketPairs(const string &expression)
