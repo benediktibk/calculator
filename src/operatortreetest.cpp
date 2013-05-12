@@ -139,3 +139,30 @@ void OperatorTreeTest::calculateValue_divisionAndMultiplication_correctValue()
 
 	CPPUNIT_ASSERT_DOUBLES_EQUAL(4, tree.calculateValue(), 0.000001);
 }
+
+void OperatorTreeTest::constructor_stringWithTwoOperatorsInARow_parsingFailed()
+{
+	string expression("4+*5");
+
+	OperatorTree tree(expression);
+
+	CPPUNIT_ASSERT(tree.parsingFailed());
+}
+
+void OperatorTreeTest::constructor_missingClosingBracket_parsingFailed()
+{
+	string expression("4+5*(4-3/2");
+
+	OperatorTree tree(expression);
+
+	CPPUNIT_ASSERT(tree.parsingFailed());
+}
+
+void OperatorTreeTest::constructor_commaInsteadOfPoint_parsingFailed()
+{
+	string expression("4,65");
+
+	OperatorTree tree(expression);
+
+	CPPUNIT_ASSERT(tree.parsingFailed());
+}
