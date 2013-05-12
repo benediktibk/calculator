@@ -121,3 +121,21 @@ void OperatorTreeTest::calculateValue_twoSubtractionsInARow_correctValue()
 
 	CPPUNIT_ASSERT_DOUBLES_EQUAL(2, tree.calculateValue(), 0.000001);
 }
+
+void OperatorTreeTest::calculateValue_subtractionAndAddition_correctValue()
+{
+	string expression("8-4+2");
+
+	OperatorTree tree(expression);
+
+	CPPUNIT_ASSERT_DOUBLES_EQUAL(6, tree.calculateValue(), 0.000001);
+}
+
+void OperatorTreeTest::calculateValue_divisionAndMultiplication_correctValue()
+{
+	string expression("8/4*2");
+
+	OperatorTree tree(expression);
+
+	CPPUNIT_ASSERT_DOUBLES_EQUAL(4, tree.calculateValue(), 0.000001);
+}
