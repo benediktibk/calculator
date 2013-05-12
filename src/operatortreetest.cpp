@@ -148,3 +148,12 @@ void OperatorTreeTest::constructor_commaInsteadOfPoint_parsingFailed()
 
 	CPPUNIT_ASSERT(tree.parsingFailed());
 }
+
+void OperatorTreeTest::constructor_missingOpeningBracket_parsingFailed()
+{
+	string expression("4+5)*2");
+
+	OperatorTree tree(expression);
+
+	CPPUNIT_ASSERT(tree.parsingFailed());
+}
