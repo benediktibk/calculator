@@ -18,15 +18,6 @@ BinaryOperatorNode::~BinaryOperatorNode()
 	m_right = 0;
 }
 
-void BinaryOperatorNode::addNodesInOrder(vector<const OperatorNode *> &nodes) const
-{
-	assert(leftAndRightSet());
-
-	m_left->addNodesInOrder(nodes);
-	nodes.push_back(this);
-	m_right->addNodesInOrder(nodes);
-}
-
 double BinaryOperatorNode::getValue() const
 {
 	assert(leftAndRightSet());

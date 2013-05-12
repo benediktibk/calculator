@@ -38,31 +38,6 @@ void BinaryOperatorNodeTest::leftAndRightSet_bothSet_true()
 	CPPUNIT_ASSERT(node.leftAndRightSet());
 }
 
-void BinaryOperatorNodeTest::addNodesInOrder_leftAndRightValueNodeSet_resultSizeIs3()
-{
-	BinaryOperatorNode node(BinaryOperationTypeAddition);
-	node.setLeftNode(new ValueOperatorNode(3));
-	node.setRightNode(new ValueOperatorNode(3));
-	vector<const OperatorNode*> result;
-
-	node.addNodesInOrder(result);
-
-	CPPUNIT_ASSERT_EQUAL((size_t)3, result.size());
-}
-
-void BinaryOperatorNodeTest::addNodesInOrder_leftAndRightValueNodeSet_secondNodeIsRoot()
-{
-	BinaryOperatorNode node(BinaryOperationTypeAddition);
-	const OperatorNode *nodeConst = &node;
-	node.setLeftNode(new ValueOperatorNode(3));
-	node.setRightNode(new ValueOperatorNode(3));
-	vector<const OperatorNode*> result;
-
-	node.addNodesInOrder(result);
-
-	CPPUNIT_ASSERT_EQUAL(nodeConst, result[1]);
-}
-
 void BinaryOperatorNodeTest::getValue_additionAndLeftValue6AndRightValue2_8()
 {
 	BinaryOperatorNode node(BinaryOperationTypeAddition);

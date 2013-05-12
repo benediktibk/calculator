@@ -25,7 +25,6 @@ public:
 	OperatorTree(const std::string &expression);
 	~OperatorTree();
 
-	std::vector<const OperatorNode*> getNodesInOrder() const;
 	bool parsingFailed() const;
 	double calculateValue() const;
 

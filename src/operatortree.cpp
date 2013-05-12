@@ -9,7 +9,7 @@ using namespace std;
 
 OperatorTree::OperatorTree(const string &expression) :
 	m_rootNode(0),
-	m_parsingFailed(true)
+	m_parsingFailed(false)
 {
 	parse(expression);
 }
@@ -20,16 +20,8 @@ OperatorTree::~OperatorTree()
 	m_rootNode = 0;
 }
 
-vector<const OperatorNode*> OperatorTree::getNodesInOrder() const
-{
-	vector<const OperatorNode*> result;
-	m_rootNode->addNodesInOrder(result);
-	return result;
-}
-
 void OperatorTree::parse(string expression)
 {
-	m_parsingFailed = false;
 	remove(expression.begin(), expression.end(), ' ');
 
 	if (expression.size() == 0)
@@ -118,9 +110,16 @@ OperatorNode *OperatorTree::parseValue(const string &valueString)
 {
 	double value;
 	stringstream stream(valueString);
+	stream.clear();
 	stream >> value;
-	ValueOperatorNode *node = new ValueOperatorNode(value);
-	return node;
+
+	if (stream.fail() || valueString.size() == 0 || !stream.eof())
+	{
+		m_parsingFailed = true;
+		return 0;
+	}
+	else
+		return new ValueOperatorNode(value);
 }
 
 vector<OperatorTree::bracketPair> OperatorTree::findTopLevelBracketPairs(const string &expression)
@@ -133,7 +132,10 @@ vector<OperatorTree::bracketPair> OperatorTree::findTopLevelBracketPairs(const s
 	{
 		openingBracket = findOpeningBracket(expression, closingBracket);
 		closingBracket = findClosingBracket(expression, openingBracket);
-		result.push_back(OperatorTree::bracketPair(openingBracket, closingBracket));
+		if (openingBracket != expression.end() && closingBracket != expression.end())
+			result.push_back(OperatorTree::bracketPair(openingBracket, closingBracket));
+		else if (openingBracket != expression.end() && closingBracket == expression.end())
+			m_parsingFailed = true;
 
 	} while(openingBracket != expression.end());
 
@@ -241,8 +243,7 @@ bool OperatorTree::parsingFailed() const
 
 double OperatorTree::calculateValue() const
 {
-	if(m_parsingFailed)
-		return 0;
+	assert(!m_parsingFailed);
 
 	return m_rootNode->getValue();
 }

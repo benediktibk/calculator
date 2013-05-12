@@ -14,24 +14,6 @@ void OperatorTreeTest::constructor_validStringWithAdditionSubtractionMultiplicat
 	CPPUNIT_ASSERT(!tree.parsingFailed());
 }
 
-void OperatorTreeTest::getNodesInOrder_emptyExpression_resultSizeIs1()
-{
-	OperatorTree tree("");
-
-	vector<const OperatorNode*> nodes = tree.getNodesInOrder();
-
-	CPPUNIT_ASSERT_EQUAL((size_t)1, nodes.size());
-}
-
-void OperatorTreeTest::getNodesInOrder_oneValue_resultSizeIs1()
-{
-	OperatorTree tree("34");
-
-	vector<const OperatorNode*> nodes = tree.getNodesInOrder();
-
-	CPPUNIT_ASSERT_EQUAL((size_t)1, nodes.size());
-}
-
 void OperatorTreeTest::calculateValue_validStringWithAdditionSubtractionMultiplicationDivisionAndParentheses_correctValue()
 {
 	string expression("5.2+6*(4-2)-3/2.423");
@@ -151,7 +133,7 @@ void OperatorTreeTest::constructor_stringWithTwoOperatorsInARow_parsingFailed()
 
 void OperatorTreeTest::constructor_missingClosingBracket_parsingFailed()
 {
-	string expression("4+5*(4-3/2");
+	string expression("2*(4-3");
 
 	OperatorTree tree(expression);
 

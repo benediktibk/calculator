@@ -10,7 +10,6 @@ class ValueOperatorNode :
 public:
 	ValueOperatorNode(double value);
 
-	virtual void addNodesInOrder(std::vector<const OperatorNode *> &nodes) const;
 	virtual double getValue() const;
 
 private:
