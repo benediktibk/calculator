@@ -202,32 +202,26 @@ vector<string::const_iterator> OperatorTree::findOperationsNotInside(const vecto
 
 vector<string::const_iterator> OperatorTree::findMultiplicationsAndDivisions(const string &expression)
 {
-	vector<string::const_iterator> multiplications = findOperatorPositions(expression, '*');
-	vector<string::const_iterator> divisions = findOperatorPositions(expression, '/');
-	vector<string::const_iterator> result;
-	result.reserve(multiplications.size() + divisions.size());
-	result.insert(result.end(), multiplications.begin(), multiplications.end());
-	result.insert(result.end(), divisions.begin(), divisions.end());
-	return result;
+	vector<char> operations;
+	operations.push_back('*');
+	operations.push_back('/');
+	return findOperatorPositions(expression, operations);
 }
 
 vector<string::const_iterator> OperatorTree::findAdditionsAndSubtractions(const string &expression)
 {
-	vector<string::const_iterator> additions = findOperatorPositions(expression, '+');
-	vector<string::const_iterator> subtractions = findOperatorPositions(expression, '-');
-	vector<string::const_iterator> result;
-	result.reserve(additions.size() + subtractions.size());
-	result.insert(result.end(), additions.begin(), additions.end());
-	result.insert(result.end(), subtractions.begin(), subtractions.end());
-	return result;
+	vector<char> operations;
+	operations.push_back('+');
+	operations.push_back('-');
+	return findOperatorPositions(expression, operations);
 }
 
-vector<string::const_iterator> OperatorTree::findOperatorPositions(const string &expression, char operation)
+vector<string::const_iterator> OperatorTree::findOperatorPositions(const string &expression, const vector<char> &operations)
 {
 	vector<string::const_iterator> result;
 
 	for (string::const_iterator i = expression.begin(); i != expression.end(); ++i)
-		if (*i == operation)
+		if (count(operations.begin(), operations.end(), *i) == 1)
 			result.push_back(i);
 
 	return result;

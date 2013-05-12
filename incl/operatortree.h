@@ -30,7 +30,7 @@ private:
 	std::vector<std::string::const_iterator> findOperationsNotInside(const std::vector<std::string::const_iterator> &operations, const std::vector<bracketPair> &bracketPairs);
 	std::vector<std::string::const_iterator> findMultiplicationsAndDivisions(const std::string &expression);
 	std::vector<std::string::const_iterator> findAdditionsAndSubtractions(const std::string &expression);
-	std::vector<std::string::const_iterator> findOperatorPositions(const std::string &expression, char operation);
+	std::vector<std::string::const_iterator> findOperatorPositions(const std::string &expression, const std::vector<char> &operations);
 
 private:
 	OperatorNode *m_rootNode;
