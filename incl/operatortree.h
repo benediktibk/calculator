@@ -21,6 +21,8 @@ private:
 private:
 	void parse(std::string expression);
 	OperatorNode* parseRecursive(const std::string &expression);
+	OperatorNode* parseIfAllEnclosedInBrackets(const std::string &expression, const std::vector<OperatorTree::bracketPair> &brackets);
+	OperatorNode* parseIfNotEnclosedInBrackets(const std::string &expression, const std::vector<OperatorTree::bracketPair> &brackets);
 	std::vector<bracketPair> findTopLevelBracketPairs(const std::string &expression);
 	std::string::const_iterator findOpeningBracket(const std::string &expression);
 	std::string::const_iterator findOpeningBracket(const std::string &expression, const std::string::const_iterator &start);

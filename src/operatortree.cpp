@@ -47,17 +47,30 @@ OperatorNode *OperatorTree::parseRecursive(const string &expression)
 	}
 
 	vector<OperatorTree::bracketPair> topLevelBrackets = findTopLevelBracketPairs(expression);
-	vector<string::const_iterator> additionsAndSubtractions = findAdditionsAndSubtractionsNotInside(expression, topLevelBrackets);
-	vector<string::const_iterator> multiplicationsAndDivisions = findMultiplicationsAndDivisionsNotInside(expression, topLevelBrackets);
+	OperatorNode *node = parseIfAllEnclosedInBrackets(expression, topLevelBrackets);
+	if (node != 0)
+		return node;
+	else
+		return parseIfNotEnclosedInBrackets(expression, topLevelBrackets);
+}
 
+OperatorNode *OperatorTree::parseIfAllEnclosedInBrackets(const string &expression, const vector<OperatorTree::bracketPair> &brackets)
+{
 	string::const_iterator lastPosition = expression.end();
 	--lastPosition;
-	for (vector<OperatorTree::bracketPair>::const_iterator i = topLevelBrackets.begin(); i != topLevelBrackets.end(); ++i)
+	for (vector<OperatorTree::bracketPair>::const_iterator i = brackets.begin(); i != brackets.end(); ++i)
 	{
 		if (i->first == expression.begin() && i->second == lastPosition)
 			return parseRecursive(string(++expression.begin(), --expression.end()));
 	}
 
+	return 0;
+}
+
+OperatorNode *OperatorTree::parseIfNotEnclosedInBrackets(const string &expression, const std::vector<OperatorTree::bracketPair> &brackets)
+{
+	vector<string::const_iterator> additionsAndSubtractions = findAdditionsAndSubtractionsNotInside(expression, brackets);
+	vector<string::const_iterator> multiplicationsAndDivisions = findMultiplicationsAndDivisionsNotInside(expression, brackets);
 	if (additionsAndSubtractions.size() > 0)
 	{
 		string::const_iterator selectedOperator = additionsAndSubtractions.back();
