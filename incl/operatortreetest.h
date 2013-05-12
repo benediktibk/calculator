@@ -19,6 +19,8 @@ class OperatorTreeTest :
 	 CPPUNIT_TEST(calculateValue_additionAndMultiplication_correctValue);
 	 CPPUNIT_TEST(calculateValue_additionAndMultiplicationWithParentheses_correctValue);
 	 CPPUNIT_TEST(calculateValue_nestedParentheses_correctValue);
+	 CPPUNIT_TEST(calculateValue_twoDivisionsInARow_correctValue);
+	 CPPUNIT_TEST(calculateValue_twoSubtractionsInARow_correctValue);
 	 CPPUNIT_TEST_SUITE_END();
 
 private:
@@ -33,6 +35,8 @@ private:
 	 void calculateValue_additionAndMultiplication_correctValue();
 	 void calculateValue_additionAndMultiplicationWithParentheses_correctValue();
 	 void calculateValue_nestedParentheses_correctValue();
+	 void calculateValue_twoDivisionsInARow_correctValue();
+	 void calculateValue_twoSubtractionsInARow_correctValue();
 };
 
 #endif
