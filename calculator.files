@@ -16,3 +16,6 @@ src/binaryoperatornodetest.cpp
 src/valueoperatornode.cpp
 src/valueoperatornodetest.cpp
 incl/binaryoperationtype.h
+gui/mainwindow.ui
+incl/mainwindow.h
+src/mainwindow.cpp
