@@ -5,9 +5,13 @@ MainWindow::MainWindow() :
     m_ui(new Ui::MainWindow)
 {
     m_ui->setupUi(this);
-    connectButtons();
     input = m_ui->inputLineEdit;
     display = m_ui->displayLineEdit;
+
+    this->setFixedSize(550, 380);
+    display->setText(tr("0"));
+    connectButtons();
+
 }
 
 void MainWindow::connectButtons()
