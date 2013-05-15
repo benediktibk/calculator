@@ -19,3 +19,4 @@ incl/binaryoperationtype.h
 gui/mainwindow.ui
 incl/mainwindow.h
 src/mainwindow.cpp
+incl/constant.h
