@@ -19,3 +19,6 @@ incl/binaryoperationtype.h
 gui/mainwindow.ui
 incl/mainwindow.h
 src/mainwindow.cpp
+incl/unaryoperatornode.h
+src/unaryoperatornode.cpp
+incl/unaryoperationtype.h
