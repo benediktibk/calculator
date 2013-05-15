@@ -1,2 +1,4 @@
 incl
 build
+/usr/include/qt4/
+/usr/include/qt4/QtGui/
