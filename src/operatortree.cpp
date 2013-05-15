@@ -5,6 +5,7 @@
 #include <algorithm>
 #include <sstream>
 #include <assert.h>
+#include "constant.h"
 
 using namespace std;
 
@@ -85,6 +86,10 @@ OperatorNode *OperatorTree::parseIfNotEnclosedInBrackets(const string &expressio
     else if (unaryfunctions.size()>0)
     {
         return parseUnaryOperator(expression);
+    }
+    else if (expression.find("pi") == 0)
+    {
+        return new ValueOperatorNode(pi);
     }
     else
 		return parseValue(expression);

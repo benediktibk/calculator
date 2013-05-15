@@ -1,5 +1,6 @@
 #include "operatortreetest.h"
 #include "operatortree.h"
+#include "constant.h"
 
 using namespace std;
 
@@ -193,6 +194,7 @@ void OperatorTreeTest::calculateValue_additionAndPotencyWithParentheses_correctV
 
 	CPPUNIT_ASSERT_DOUBLES_EQUAL(49, tree.calculateValue(), 0.000001);
 }
+
 void OperatorTreeTest::calculateValue_twoPotenciesUnrelatedTogether_correctValue()
 {
     string expression("(4+3)^2+5^4*2");
@@ -236,4 +238,13 @@ void OperatorTreeTest::calculateValue_TangensWithParentheses_correctValue()
     OperatorTree tree(expression);
 
     CPPUNIT_ASSERT_DOUBLES_EQUAL(1.557408, tree.calculateValue(), 0.001);
+}
+
+void OperatorTreeTest::test_constantPi()
+{
+    string expression("pi");
+
+    OperatorTree tree(expression);
+
+    CPPUNIT_ASSERT_DOUBLES_EQUAL(pi, tree.calculateValue(), 0.000001);
 }

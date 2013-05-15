@@ -34,6 +34,7 @@ class OperatorTreeTest :
      CPPUNIT_TEST(calculateValue_CosineWithParentheses_correctValue);
      CPPUNIT_TEST(calculateValue_additionAndPotencyAndSineAndExpWithParentheses_correctValue);
      CPPUNIT_TEST(calculateValue_additionAndSineWithParentheses_correctValue);
+     CPPUNIT_TEST(test_constantPi);
 	 CPPUNIT_TEST_SUITE_END();
 
 private:
@@ -63,6 +64,7 @@ private:
      void calculateValue_CosineWithParentheses_correctValue();
      void calculateValue_additionAndPotencyAndSineAndExpWithParentheses_correctValue();
      void calculateValue_additionAndSineWithParentheses_correctValue();
+     void test_constantPi();
 };
 
 #endif
