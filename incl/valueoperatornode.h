@@ -10,7 +10,7 @@ class ValueOperatorNode :
 public:
 	ValueOperatorNode(double value);
 
-	virtual double getValue() const;
+	virtual double getValue(bool &error) const;
 
 private:
 	const double m_value;

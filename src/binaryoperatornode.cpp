@@ -19,12 +19,17 @@ BinaryOperatorNode::~BinaryOperatorNode()
 	m_right = 0;
 }
 
-double BinaryOperatorNode::getValue() const
+double BinaryOperatorNode::getValue(bool &error) const
 {
 	assert(leftAndRightSet());
 
-	double leftValue = m_left->getValue();
-	double rightValue = m_right->getValue();
+	double leftValue = m_left->getValue(error);
+	if (error)
+		return 0;
+
+	double rightValue = m_right->getValue(error);
+	if (error)
+		return 0;
 
 	switch(m_operationType)
 	{
@@ -35,9 +40,14 @@ double BinaryOperatorNode::getValue() const
 	case BinaryOperationTypeMultiplication:
 		return leftValue * rightValue;
 	case BinaryOperationTypeDivision:
+		if (rightValue == 0)
+		{
+			error = true;
+			return 0;
+		}
 		return leftValue / rightValue;
-    case BinaryOperationTypePotency:
-        return pow(leftValue, rightValue);
+	case BinaryOperationTypePotency:
+		return pow(leftValue, rightValue);
 	}
 
 	assert(false);
