@@ -6,7 +6,8 @@ enum BinaryOperationType
 	BinaryOperationTypeAddition,
 	BinaryOperationTypeSubtraction,
 	BinaryOperationTypeMultiplication,
-	BinaryOperationTypeDivision
+    BinaryOperationTypeDivision,
+    BinaryOperationTypePotency
 };
 
 #endif

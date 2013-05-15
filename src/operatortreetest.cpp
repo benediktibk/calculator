@@ -157,3 +157,39 @@ void OperatorTreeTest::constructor_missingOpeningBracket_parsingFailed()
 
 	CPPUNIT_ASSERT(tree.parsingFailed());
 }
+
+void OperatorTreeTest::calculateValue_potency_correctValue()
+{
+    string expression("2^3");
+
+    OperatorTree tree(expression);
+
+    CPPUNIT_ASSERT_DOUBLES_EQUAL(8, tree.calculateValue(), 0.000001);
+}
+
+void OperatorTreeTest::calculateValue_twoPotencysInARow_correctValue()
+{
+    string expression("2^3^4");
+
+    OperatorTree tree(expression);
+
+    CPPUNIT_ASSERT_DOUBLES_EQUAL(4096, tree.calculateValue(), 0.000001);
+}
+
+void OperatorTreeTest::calculateValue_additionAndPotency_correctValue()
+{
+    string expression("4+3^2");
+
+    OperatorTree tree(expression);
+
+    CPPUNIT_ASSERT_DOUBLES_EQUAL(13, tree.calculateValue(), 0.000001);
+}
+
+void OperatorTreeTest::calculateValue_additionAndPotencyWithParentheses_correctValue()
+{
+    string expression("(4+3)^2");
+
+    OperatorTree tree(expression);
+
+    CPPUNIT_ASSERT_DOUBLES_EQUAL(49, tree.calculateValue(), 0.000001);
+}

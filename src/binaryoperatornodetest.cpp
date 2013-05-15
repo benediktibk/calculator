@@ -73,3 +73,12 @@ void BinaryOperatorNodeTest::getValue_divisionAndLeftValue6AndRightValue2_3()
 
 	CPPUNIT_ASSERT_DOUBLES_EQUAL(3, node.getValue(), 0.0001);
 }
+
+void BinaryOperatorNodeTest::getValue_potencyAndLeftValue6AndRightValue2_36()
+{
+    BinaryOperatorNode node(BinaryOperationTypePotency);
+    node.setLeftNode(new ValueOperatorNode(6));
+    node.setRightNode(new ValueOperatorNode(2));
+
+    CPPUNIT_ASSERT_DOUBLES_EQUAL(36, node.getValue(), 0.0001);
+}

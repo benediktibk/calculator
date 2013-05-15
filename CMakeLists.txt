@@ -2,7 +2,7 @@ project(calculator)
 cmake_minimum_required(VERSION 2.8)
 
 find_library(CPPUNIT_LIBRARY cppunit)
-find_package(Qt COMPONENTS QTCORE QTGUI)
+find_package(Qt4 REQUIRED)
 include(${QT_USE_FILE})
 add_definitions(${QT_DEFINITIONS})
 

@@ -25,6 +25,10 @@ class OperatorTreeTest :
 	 CPPUNIT_TEST(constructor_missingClosingBracket_parsingFailed);
 	 CPPUNIT_TEST(constructor_commaInsteadOfPoint_parsingFailed);
 	 CPPUNIT_TEST(constructor_missingOpeningBracket_parsingFailed);
+     CPPUNIT_TEST(calculateValue_potency_correctValue);
+     CPPUNIT_TEST(calculateValue_twoPotencysInARow_correctValue);
+     CPPUNIT_TEST(calculateValue_additionAndPotency_correctValue);
+     CPPUNIT_TEST(calculateValue_additionAndPotencyWithParentheses_correctValue);
 	 CPPUNIT_TEST_SUITE_END();
 
 private:
@@ -45,6 +49,10 @@ private:
 	 void constructor_missingClosingBracket_parsingFailed();
 	 void constructor_commaInsteadOfPoint_parsingFailed();
 	 void constructor_missingOpeningBracket_parsingFailed();
+     void calculateValue_potency_correctValue();
+     void calculateValue_twoPotencysInARow_correctValue();
+     void calculateValue_additionAndPotency_correctValue();
+     void calculateValue_additionAndPotencyWithParentheses_correctValue();
 };
 
 #endif

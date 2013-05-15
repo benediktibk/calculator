@@ -1,5 +1,6 @@
 #include "binaryoperatornode.h"
 #include <assert.h>
+#include <math.h>
 
 using namespace std;
 
@@ -35,6 +36,8 @@ double BinaryOperatorNode::getValue() const
 		return leftValue * rightValue;
 	case BinaryOperationTypeDivision:
 		return leftValue / rightValue;
+    case BinaryOperationTypePotency:
+        return pow(leftValue, rightValue);
 	}
 
 	assert(false);

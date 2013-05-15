@@ -63,7 +63,8 @@ OperatorNode *OperatorTree::parseIfNotEnclosedInBrackets(const string &expressio
 {
 	vector<string::const_iterator> additionsAndSubtractions = findAdditionsAndSubtractionsNotInside(expression, brackets);
 	vector<string::const_iterator> multiplicationsAndDivisions = findMultiplicationsAndDivisionsNotInside(expression, brackets);
-	if (additionsAndSubtractions.size() > 0)
+    vector<string::const_iterator> potencys = findPotencysNotInside(expression, brackets);
+    if (additionsAndSubtractions.size() > 0)
 	{
 		string::const_iterator selectedOperator = additionsAndSubtractions.back();
 		return parseBinaryOperator(expression, selectedOperator);
@@ -74,6 +75,11 @@ OperatorNode *OperatorTree::parseIfNotEnclosedInBrackets(const string &expressio
 		string::const_iterator selectedOperator = multiplicationsAndDivisions.back();
 		return parseBinaryOperator(expression, selectedOperator);
 	}
+    else if (potencys.size() > 0)
+    {
+        string::const_iterator selectedOperator = potencys.back();
+        return parseBinaryOperator(expression, selectedOperator);
+    }
 	else
 		return parseValue(expression);
 }
@@ -94,6 +100,8 @@ OperatorNode *OperatorTree::parseBinaryOperator(const string &expression, const 
 		operationType = BinaryOperationTypeMultiplication;
 	else if (*selectedOperator == '/')
 		operationType = BinaryOperationTypeDivision;
+    else if (*selectedOperator == '^')
+        operationType = BinaryOperationTypePotency;
 	else
 		assert(false);
 
@@ -139,7 +147,7 @@ vector<OperatorTree::bracketPair> OperatorTree::findTopLevelBracketPairs(const s
 
 	} while(openingBracket != expression.end());
 
-	return result;
+    return result;
 }
 
 string::const_iterator OperatorTree::findOpeningBracket(const string &expression)
@@ -174,7 +182,7 @@ vector<string::const_iterator> OperatorTree::findMultiplicationsAndDivisionsNotI
 	vector<string::const_iterator> result;
 	vector<string::const_iterator> allOperations = findMultiplicationsAndDivisions(expression);
 
-	return findOperationsNotInside(allOperations, bracketPairs);
+    return findOperationsNotInside(allOperations, bracketPairs);
 }
 
 vector<string::const_iterator> OperatorTree::findAdditionsAndSubtractionsNotInside(const string &expression, const vector<OperatorTree::bracketPair> &bracketPairs)
@@ -246,4 +254,19 @@ double OperatorTree::calculateValue() const
 	assert(!m_parsingFailed);
 
 	return m_rootNode->getValue();
+}
+
+vector<string::const_iterator> OperatorTree::findPotencys(const string &expression)
+{
+    vector<char> operations;
+    operations.push_back('^');
+    return findOperatorPositions(expression, operations);
+}
+
+vector<string::const_iterator> OperatorTree::findPotencysNotInside(const string &expression, const vector<OperatorTree::bracketPair> &bracketPairs)
+{
+    vector<string::const_iterator> result;
+    vector<string::const_iterator> allOperations = findPotencys(expression);
+
+    return findOperationsNotInside(allOperations, bracketPairs);
 }
