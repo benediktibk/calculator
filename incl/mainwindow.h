@@ -16,6 +16,7 @@ public:
 private slots:
     void digitClicked();
     void dotClicked();
+    void operatorClicked();
 
     void equalClicked();
 

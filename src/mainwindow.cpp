@@ -10,6 +10,7 @@ MainWindow::MainWindow() :
 
     this->setFixedSize(550, 380);
     display->setText(tr("0"));
+
     connectButtons();
 
 }
@@ -32,6 +33,14 @@ void MainWindow::connectButtons()
     connect(m_ui->digit9Button, SIGNAL(clicked()), this, SLOT(digitClicked()));
     connect(m_ui->dotButton, SIGNAL(clicked()), this, SLOT(dotClicked()));
 
+    connect(m_ui->additionButton, SIGNAL(clicked()), this, SLOT(operatorClicked()));
+    connect(m_ui->multiplicateButton, SIGNAL(clicked()), this, SLOT(operatorClicked()));
+    connect(m_ui->substractButton, SIGNAL(clicked()), this, SLOT(operatorClicked()));
+    connect(m_ui->divisionButton, SIGNAL(clicked()), this, SLOT(operatorClicked()));
+    connect(m_ui->potencyButton, SIGNAL(clicked()), this, SLOT(operatorClicked()));
+    connect(m_ui->bracketOpenButton, SIGNAL(clicked()), this, SLOT(operatorClicked()));
+    connect(m_ui->bracketCloseButton, SIGNAL(clicked()), this, SLOT(operatorClicked()));
+
     connect(m_ui->equalButton, SIGNAL(clicked()), this, SLOT(equalClicked()));
     connect(m_ui->inputLineEdit, SIGNAL(returnPressed()), this, SLOT(equalClicked()));
 }
@@ -47,6 +56,14 @@ void MainWindow::digitClicked()
 void MainWindow::dotClicked()
 {
     input->setText(input->text() + ".");
+}
+
+void MainWindow::operatorClicked()
+{
+    QPushButton *clickedButton = qobject_cast<QPushButton *>(sender());
+    QString clickedOperator = clickedButton->text();
+
+    input->setText(input->text() + clickedOperator);
 }
 
 void MainWindow::equalClicked()
