@@ -48,6 +48,8 @@ private:
 	std::vector<std::string::const_iterator> findMultiplicationsAndDivisions(const std::string &expression);
 	std::vector<std::string::const_iterator> findAdditionsAndSubtractions(const std::string &expression);
 	std::vector<std::string::const_iterator> findOperatorPositions(const std::string &expression, const std::vector<char> &operations);
+    std::vector<std::string::const_iterator> findPotencys(const std::string &expression);
+    std::vector<std::string::const_iterator> findPotencysNotInside(const std::string &expression, const std::vector<bracketPair> &bracketPairs);
 
 private:
 	OperatorNode *m_rootNode;

@@ -16,6 +16,7 @@ class BinaryOperatorNodeTest :
 	 CPPUNIT_TEST(getValue_subtractionAndLeftValue6AndRightValue2_4);
 	 CPPUNIT_TEST(getValue_multiplicationAndLeftValue6AndRightValue2_12);
 	 CPPUNIT_TEST(getValue_divisionAndLeftValue6AndRightValue2_3);
+     CPPUNIT_TEST(getValue_potencyAndLeftValue6AndRightValue2_36);
 	 CPPUNIT_TEST_SUITE_END();
 
 private:
@@ -27,6 +28,7 @@ private:
 	 void getValue_subtractionAndLeftValue6AndRightValue2_4();
 	 void getValue_multiplicationAndLeftValue6AndRightValue2_12();
 	 void getValue_divisionAndLeftValue6AndRightValue2_3();
+     void getValue_potencyAndLeftValue6AndRightValue2_36();
 };
 
 #endif

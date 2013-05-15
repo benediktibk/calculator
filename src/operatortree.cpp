@@ -139,7 +139,7 @@ vector<OperatorTree::bracketPair> OperatorTree::findTopLevelBracketPairs(const s
 
 	} while(openingBracket != expression.end());
 
-	return result;
+    return result;
 }
 
 string::const_iterator OperatorTree::findOpeningBracket(const string &expression)
@@ -174,7 +174,7 @@ vector<string::const_iterator> OperatorTree::findMultiplicationsAndDivisionsNotI
 	vector<string::const_iterator> result;
 	vector<string::const_iterator> allOperations = findMultiplicationsAndDivisions(expression);
 
-	return findOperationsNotInside(allOperations, bracketPairs);
+    return findOperationsNotInside(allOperations, bracketPairs);
 }
 
 vector<string::const_iterator> OperatorTree::findAdditionsAndSubtractionsNotInside(const string &expression, const vector<OperatorTree::bracketPair> &bracketPairs)
@@ -246,4 +246,11 @@ double OperatorTree::calculateValue() const
 	assert(!m_parsingFailed);
 
 	return m_rootNode->getValue();
+}
+
+vector<string::const_iterator> OperatorTree::findPotencys(const string &expression)
+{
+    vector<char> operations;
+    operations.push_back('^');
+    return findOperatorPositions(expression, operations);
 }
