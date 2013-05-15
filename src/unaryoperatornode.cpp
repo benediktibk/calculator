@@ -32,10 +32,7 @@ double UnaryOperatorNode::getValue() const
         return tan(nodeValue);
     case UnaryOperationTypeExponential:
         return exp(nodeValue);
-
     }
-
-
 
     assert(false);
     return 0;
