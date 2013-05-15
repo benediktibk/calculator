@@ -24,3 +24,4 @@ src/unaryoperatornode.cpp
 incl/unaryoperationtype.h
 incl/unaryoperatornodetest.h
 src/unaryoperatornodetest.cpp
+incl/constant.h

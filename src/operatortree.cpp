@@ -79,7 +79,7 @@ OperatorNode *OperatorTree::parseIfNotEnclosedInBrackets(const string &expressio
 	}
     else if (potencys.size() > 0)
     {
-        string::const_iterator selectedOperator = potencys.back();
+        string::const_iterator selectedOperator = potencys.front();
         return parseBinaryOperator(expression, selectedOperator);
     }
     else if (unaryfunctions.size()>0)
