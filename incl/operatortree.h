@@ -38,6 +38,7 @@ private:
 	OperatorNode* parseIfNotEnclosedInBrackets(const std::string &expression, const std::vector<OperatorTree::bracketPair> &brackets);
 	OperatorNode* parseBinaryOperator(const std::string &expression, const std::string::const_iterator &selectedOperator);
 	OperatorNode* parseValue(const std::string &valueString);
+    OperatorNode* parseUnaryOperator(const std::string &expression);
 	std::vector<bracketPair> findTopLevelBracketPairs(const std::string &expression);
 	std::string::const_iterator findOpeningBracket(const std::string &expression);
 	std::string::const_iterator findOpeningBracket(const std::string &expression, const std::string::const_iterator &start);
@@ -50,6 +51,9 @@ private:
 	std::vector<std::string::const_iterator> findOperatorPositions(const std::string &expression, const std::vector<char> &operations);
     std::vector<std::string::const_iterator> findPotencys(const std::string &expression);
     std::vector<std::string::const_iterator> findPotencysNotInside(const std::string &expression, const std::vector<bracketPair> &bracketPairs);
+    std::vector<std::string::const_iterator> findUnaryFunctions(const std::string &expression, const std::string &func);
+    std::vector<std::string::const_iterator> findAllUnaryFunctionsSorted(const std::string &expression);
+    std::vector<std::string::const_iterator> findUnaryFunctionsNotInside(const std::string &expression, const std::vector<OperatorTree::bracketPair> &bracketPairs);
 
 private:
 	OperatorNode *m_rootNode;

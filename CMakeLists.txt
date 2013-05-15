@@ -11,6 +11,7 @@ set(SRC_LIST
 	src/operatortree.cpp
 	src/binaryoperatornode.cpp
 	src/valueoperatornode.cpp
+    src/unaryoperatornode.cpp
 )
 
 set(SRC_QT_LIST
@@ -21,6 +22,7 @@ set(SRC_TEST_LIST
 	src/operatortreetest.cpp
 	src/binaryoperatornodetest.cpp
 	src/valueoperatornodetest.cpp
+    src/unaryoperatornodetest.cpp
 )
 
 set(HEADERS_QT_LIST
