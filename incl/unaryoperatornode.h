@@ -13,14 +13,12 @@ public:
     virtual ~UnaryOperatorNode();
 
     virtual double getValue() const;
-    void setLeftNode(OperatorNode *node);
-    void setRightNode(OperatorNode *node);
-
+    void setNode(OperatorNode *node);
 
 private:
     const UnaryOperationType m_operationType;
-    OperatorNode *m_left;
-    OperatorNode *m_right;
+    OperatorNode *m_node;
+
 };
 
 

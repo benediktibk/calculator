@@ -6,9 +6,9 @@ enum UnaryOperationType
     UnaryOperationTypeSine,
     UnaryOperationTypeCosine,
     UnaryOperationTypeTangens,
-    BinaryOperationTypeExponential
+    UnaryOperationTypeExponential
 };
 
-#endif
+
 
 #endif // UNARYOPERATIONTYPE_H

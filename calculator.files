@@ -22,3 +22,5 @@ src/mainwindow.cpp
 incl/unaryoperatornode.h
 src/unaryoperatornode.cpp
 incl/unaryoperationtype.h
+incl/unaryoperatornodetest.h
+src/unaryoperatornodetest.cpp
