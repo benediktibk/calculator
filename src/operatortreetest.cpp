@@ -160,36 +160,45 @@ void OperatorTreeTest::constructor_missingOpeningBracket_parsingFailed()
 
 void OperatorTreeTest::calculateValue_potency_correctValue()
 {
-    string expression("2^3");
+	string expression("2^3");
 
-    OperatorTree tree(expression);
+	OperatorTree tree(expression);
 
-    CPPUNIT_ASSERT_DOUBLES_EQUAL(8, tree.calculateValue(), 0.000001);
+	CPPUNIT_ASSERT_DOUBLES_EQUAL(8, tree.calculateValue(), 0.000001);
 }
 
 void OperatorTreeTest::calculateValue_twoPotencysInARow_correctValue()
 {
-    string expression("2^3^4");
+	string expression("4^3^2");
 
-    OperatorTree tree(expression);
+	OperatorTree tree(expression);
 
-    CPPUNIT_ASSERT_DOUBLES_EQUAL(4096, tree.calculateValue(), 0.000001);
+	CPPUNIT_ASSERT_DOUBLES_EQUAL(262144, tree.calculateValue(), 0.000001);
 }
 
 void OperatorTreeTest::calculateValue_additionAndPotency_correctValue()
 {
-    string expression("4+3^2");
+	string expression("4+3^2");
 
-    OperatorTree tree(expression);
+	OperatorTree tree(expression);
 
-    CPPUNIT_ASSERT_DOUBLES_EQUAL(13, tree.calculateValue(), 0.000001);
+	CPPUNIT_ASSERT_DOUBLES_EQUAL(13, tree.calculateValue(), 0.000001);
 }
 
 void OperatorTreeTest::calculateValue_additionAndPotencyWithParentheses_correctValue()
 {
-    string expression("(4+3)^2");
+	string expression("(4+3)^2");
 
-    OperatorTree tree(expression);
+	OperatorTree tree(expression);
 
-    CPPUNIT_ASSERT_DOUBLES_EQUAL(49, tree.calculateValue(), 0.000001);
+	CPPUNIT_ASSERT_DOUBLES_EQUAL(49, tree.calculateValue(), 0.000001);
+}
+
+void OperatorTreeTest::calculateValue_twoPotenciesUnrelatedTogether_correctValue()
+{
+	string expression("(4+3)^2+5^4*2");
+
+	OperatorTree tree(expression);
+
+	CPPUNIT_ASSERT_DOUBLES_EQUAL(1299, tree.calculateValue(), 0.000001);
 }
