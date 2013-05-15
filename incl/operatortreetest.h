@@ -29,6 +29,10 @@ class OperatorTreeTest :
      CPPUNIT_TEST(calculateValue_twoPotencysInARow_correctValue);
      CPPUNIT_TEST(calculateValue_additionAndPotency_correctValue);
      CPPUNIT_TEST(calculateValue_additionAndPotencyWithParentheses_correctValue);
+     CPPUNIT_TEST(calculateValue_TangensWithParentheses_correctValue);
+     CPPUNIT_TEST(calculateValue_CosineWithParentheses_correctValue);
+     CPPUNIT_TEST(calculateValue_additionAndPotencyAndSineAndExpWithParentheses_correctValue);
+     CPPUNIT_TEST(calculateValue_additionAndSineWithParentheses_correctValue);
 	 CPPUNIT_TEST_SUITE_END();
 
 private:
@@ -53,6 +57,10 @@ private:
      void calculateValue_twoPotencysInARow_correctValue();
      void calculateValue_additionAndPotency_correctValue();
      void calculateValue_additionAndPotencyWithParentheses_correctValue();
+     void calculateValue_TangensWithParentheses_correctValue();
+     void calculateValue_CosineWithParentheses_correctValue();
+     void calculateValue_additionAndPotencyAndSineAndExpWithParentheses_correctValue();
+     void calculateValue_additionAndSineWithParentheses_correctValue();
 };
 
 #endif

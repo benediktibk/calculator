@@ -193,3 +193,40 @@ void OperatorTreeTest::calculateValue_additionAndPotencyWithParentheses_correctV
 
     CPPUNIT_ASSERT_DOUBLES_EQUAL(49, tree.calculateValue(), 0.000001);
 }
+
+void OperatorTreeTest::calculateValue_additionAndSineWithParentheses_correctValue()
+{
+    string expression("sin((4+3)^2)+1");
+
+    OperatorTree tree(expression);
+
+    CPPUNIT_ASSERT_DOUBLES_EQUAL(0.046247347, tree.calculateValue(), 0.0001);
+}
+
+void OperatorTreeTest::calculateValue_additionAndPotencyAndSineAndExpWithParentheses_correctValue()
+{
+    string expression("2^2*(sin(sin(sin(0)))+exp(0))");
+
+    OperatorTree tree(expression);
+
+    CPPUNIT_ASSERT_DOUBLES_EQUAL(4, tree.calculateValue(), 0.001);
+}
+
+void OperatorTreeTest::calculateValue_CosineWithParentheses_correctValue()
+{
+    string expression("cos(3.141592654)");
+
+    OperatorTree tree(expression);
+
+    CPPUNIT_ASSERT_DOUBLES_EQUAL(-1, tree.calculateValue(), 0.0001);
+}
+
+void OperatorTreeTest::calculateValue_TangensWithParentheses_correctValue()
+{
+    string expression("tan(1)");
+
+    OperatorTree tree(expression);
+
+    CPPUNIT_ASSERT_DOUBLES_EQUAL(1.557408, tree.calculateValue(), 0.001);
+}
+

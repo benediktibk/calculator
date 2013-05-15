@@ -298,7 +298,7 @@ vector<string::const_iterator> OperatorTree::findUnaryFunctions(const string &ex
 
     do
     {
-        size_t foundPosition = expression.find(func, lastPosition - expression.begin() + 1);
+        size_t foundPosition = expression.find(func, lastPosition - expression.begin());
 
         if (foundPosition != string::npos)
             lastPosition = expression.begin() + foundPosition;
@@ -306,6 +306,7 @@ vector<string::const_iterator> OperatorTree::findUnaryFunctions(const string &ex
             lastPosition = expression.end();
 
         Positions.push_back(lastPosition);
+        ++lastPosition;
     } while(Positions.back() != expression.end());
 
     Positions.pop_back();
