@@ -248,3 +248,12 @@ void OperatorTreeTest::test_constantPi()
 
     CPPUNIT_ASSERT_DOUBLES_EQUAL(pi, tree.calculateValue(), 0.000001);
 }
+
+void OperatorTreeTest::calculateValue_piAndAddition_correctValue()
+{
+    string expression("pi+2");
+
+    OperatorTree tree(expression);
+
+    CPPUNIT_ASSERT_DOUBLES_EQUAL(5.141592654, tree.calculateValue(), 0.000001);
+}
