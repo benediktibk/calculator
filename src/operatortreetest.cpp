@@ -377,3 +377,13 @@ void OperatorTreeTest::constructor_twoWhiteSpaces_notParsingFailed()
 
 	CPPUNIT_ASSERT(!tree.parsingFailed());
 }
+
+void OperatorTreeTest::constructor_absin_parsingFailed()
+{
+	CPPUNIT_ASSERT(false); // remove this if the following test doesn't crash anymore
+	string expression("absin");
+
+	OperatorTree tree(expression, 0.0);
+
+	CPPUNIT_ASSERT(!tree.parsingFailed());
+}
