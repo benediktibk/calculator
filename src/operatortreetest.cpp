@@ -385,5 +385,15 @@ void OperatorTreeTest::constructor_absin_parsingFailed()
 
 	OperatorTree tree(expression, 0.0);
 
-	CPPUNIT_ASSERT(!tree.parsingFailed());
+	CPPUNIT_ASSERT(tree.parsingFailed());
+}
+
+void OperatorTreeTest::constructor_minusexp0_parsingFailed()
+{
+	CPPUNIT_ASSERT(false); // remove this if the following test doesn't crash anymore
+	string expression("-exp(0)");
+
+	OperatorTree tree(expression, 0.0);
+
+	CPPUNIT_ASSERT(tree.parsingFailed());
 }

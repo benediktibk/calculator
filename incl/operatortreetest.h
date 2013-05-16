@@ -47,6 +47,7 @@ class OperatorTreeTest :
 	 CPPUNIT_TEST(constructor_ansTwoInARow_parsingFailed);
 	 CPPUNIT_TEST(constructor_twoWhiteSpaces_notParsingFailed);
 	 CPPUNIT_TEST(constructor_absin_parsingFailed);
+	 CPPUNIT_TEST(constructor_minusexp0_parsingFailed);
 	 CPPUNIT_TEST_SUITE_END();
 
 private:
@@ -89,6 +90,7 @@ private:
 	 void constructor_ansTwoInARow_parsingFailed();
 	 void constructor_twoWhiteSpaces_notParsingFailed();
 	 void constructor_absin_parsingFailed();
+	 void constructor_minusexp0_parsingFailed();
 };
 
 #endif
