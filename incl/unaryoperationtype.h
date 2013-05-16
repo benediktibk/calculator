@@ -6,7 +6,11 @@ enum UnaryOperationType
     UnaryOperationTypeSine,
     UnaryOperationTypeCosine,
     UnaryOperationTypeTangens,
-    UnaryOperationTypeExponential
+    UnaryOperationTypeExponential,
+    UnaryOperationTypeArcSine,
+    UnaryOperationTypeArcCosine,
+    UnaryOperationTypeArcTangens,
+    UnaryOperationTypeLogarithmNaturalis
 };
 
 

@@ -24,6 +24,7 @@ double UnaryOperatorNode::getValue(bool &error) const
 
 	error = false;
 	double nodeValue = m_node->getValue(error);
+	double result;
 
 	if (	m_angleType == AngleTypeDegree &&
 			(	m_operationType == UnaryOperationTypeSine ||
@@ -34,17 +35,38 @@ double UnaryOperatorNode::getValue(bool &error) const
 	switch(m_operationType)
 	{
 	case UnaryOperationTypeSine:
-		return sin(nodeValue);
+		result = sin(nodeValue);
+		break;
 	case UnaryOperationTypeCosine:
-		return cos(nodeValue);
+		result = cos(nodeValue);
+		break;
 	case UnaryOperationTypeTangens:
-		return tan(nodeValue);
+		result = tan(nodeValue);
+		break;
 	case UnaryOperationTypeExponential:
-		return exp(nodeValue);
+		result = exp(nodeValue);
+		break;
+	case UnaryOperationTypeArcSine:
+		result = asin(nodeValue);
+		break;
+	case UnaryOperationTypeArcCosine:
+		result = acos(nodeValue);
+		break;
+	case UnaryOperationTypeArcTangens:
+		result = atan(nodeValue);
+		break;
+	case UnaryOperationTypeLogarithmNaturalis:
+		result = log(nodeValue);
+		break;
 	}
 
-	assert(false);
-	return 0;
+	if (	m_angleType == AngleTypeDegree &&
+			(	m_operationType == UnaryOperationTypeArcSine ||
+				m_operationType == UnaryOperationTypeArcCosine ||
+				m_operationType == UnaryOperationTypeArcTangens))
+		result *= 180/pi;
+
+	return result;
 }
 
 void UnaryOperatorNode::setNode(OperatorNode *node)

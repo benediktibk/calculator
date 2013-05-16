@@ -415,3 +415,43 @@ void OperatorTreeTest::calculateValue_sin360AndAngleTypeRadiant_correctResult()
 
 	CPPUNIT_ASSERT_DOUBLES_EQUAL(0.95891572, tree.calculateValue(error), 0.0001);
 }
+
+void OperatorTreeTest::calculateValue_asin_correctValue()
+{
+    string expression("asin(1)");
+    bool error;
+
+    OperatorTree tree(expression);
+
+    CPPUNIT_ASSERT_DOUBLES_EQUAL(1.5708, tree.calculateValue(error), 0.001);
+}
+
+void OperatorTreeTest::calculateValue_sinAndasin_correctValue()
+{
+    string expression("asin(1)+sin(pi/2)");
+    bool error;
+
+    OperatorTree tree(expression);
+
+    CPPUNIT_ASSERT_DOUBLES_EQUAL(2.5708, tree.calculateValue(error), 0.001);
+}
+
+void OperatorTreeTest::calculateValue_expAndln_correctValue()
+{
+    string expression("ln(exp(5))");
+    bool error;
+
+    OperatorTree tree(expression);
+
+    CPPUNIT_ASSERT_DOUBLES_EQUAL(5, tree.calculateValue(error), 0.001);
+}
+
+void OperatorTreeTest::calculateValue_atanAndasinAndacos_correctValue()
+{
+    string expression("asin(1)+acos(1)+atan(1)");
+    bool error;
+
+    OperatorTree tree(expression);
+
+    CPPUNIT_ASSERT_DOUBLES_EQUAL(2.35619, tree.calculateValue(error), 0.0001);
+}
