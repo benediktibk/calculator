@@ -13,6 +13,8 @@ MainWindow::MainWindow() :
 	this->setFixedSize(550, 380);
 	display->setText(tr("0"));
     input->setFocus();
+    m_ui->divisionButton->setText(tr("\367"));
+    m_ui->multiplicateButton->setText(tr("\327"));
 
 	connectButtons();
 }
@@ -70,7 +72,12 @@ void MainWindow::operatorClicked()
 	QPushButton *clickedButton = qobject_cast<QPushButton *>(sender());
 	QString clickedOperator = clickedButton->text();
 
-	input->setText(input->text() + clickedOperator);
+    if (clickedOperator == tr("\327"))
+        clickedOperator = tr("*");
+    else if (clickedOperator == tr("\367"))
+        clickedOperator = tr("/");
+
+    input->setText(input->text() + clickedOperator);
 }
 
 void MainWindow::unaryOperatorClicked()
