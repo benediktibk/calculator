@@ -29,6 +29,8 @@ void MainWindow::connectButtons()
 	connect(m_ui->clearAllButton, SIGNAL(clicked()), this, SLOT(clearAllClicked()));
 	connect(m_ui->clearButton, SIGNAL(clicked()), this, SLOT(clearClicked()));
 	connect(m_ui->exitButton, SIGNAL(clicked()), this, SLOT(exitClicked()));
+    connect(m_ui->degreeRadioButton, SIGNAL(clicked()), this, SLOT(equalClicked()));
+    connect(m_ui->radiantRadioButton, SIGNAL(clicked()), this, SLOT(equalClicked()));
 
 	connect(m_ui->digit0Button, SIGNAL(clicked()), this, SLOT(digitClicked()));
 	connect(m_ui->digit1Button, SIGNAL(clicked()), this, SLOT(digitClicked()));
