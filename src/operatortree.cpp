@@ -152,22 +152,22 @@ OperatorNode *OperatorTree::parseUnaryOperator(const string &expression)
 
 	if (expression.find("sin") == 0)
 	{
-		result = new UnaryOperatorNode(UnaryOperationTypeSine, AngleTypeRadiant);
+		result = new UnaryOperatorNode(UnaryOperationTypeSine, m_angleType);
 		childExpression = expression.substr(3);
 	}
 	else if (expression.find("cos") == 0)
 	{
-		result = new UnaryOperatorNode(UnaryOperationTypeCosine, AngleTypeRadiant);
+		result = new UnaryOperatorNode(UnaryOperationTypeCosine, m_angleType);
 		childExpression = expression.substr(3);
 	}
 	else if (expression.find("tan") == 0)
 	{
-		result = new UnaryOperatorNode(UnaryOperationTypeTangens, AngleTypeRadiant);
+		result = new UnaryOperatorNode(UnaryOperationTypeTangens, m_angleType);
 		childExpression = expression.substr(3);
 	}
 	else if (expression.find("exp") == 0)
 	{
-		result = new UnaryOperatorNode(UnaryOperationTypeExponential, AngleTypeRadiant);
+		result = new UnaryOperatorNode(UnaryOperationTypeExponential, m_angleType);
 		childExpression = expression.substr(3);
 	}
 	else
