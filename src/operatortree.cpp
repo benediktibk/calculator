@@ -5,6 +5,7 @@
 #include <algorithm>
 #include <sstream>
 #include <assert.h>
+#include "constant.h"
 
 using namespace std;
 
@@ -64,29 +65,34 @@ OperatorNode *OperatorTree::parseIfNotEnclosedInBrackets(const string &expressio
 {
 	vector<string::const_iterator> additionsAndSubtractions = findAdditionsAndSubtractionsNotInside(expression, brackets);
 	vector<string::const_iterator> multiplicationsAndDivisions = findMultiplicationsAndDivisionsNotInside(expression, brackets);
-	vector<string::const_iterator> potencys = findPotencysNotInside(expression, brackets);
-    vector<string::const_iterator> unaryfunctions = findUnaryFunctionsNotInside(expression, brackets);
+	vector<string::const_iterator> potencies = findPotencysNotInside(expression, brackets);
+	vector<string::const_iterator> unaryfunctions = findUnaryFunctionsNotInside(expression, brackets);
+
 	if (additionsAndSubtractions.size() > 0)
 	{
 		string::const_iterator selectedOperator = additionsAndSubtractions.back();
-		return parseBinaryOperator(expression, selectedOperator);
+		string firstPart(expression.begin(), selectedOperator);
 
+		// if the first part is empty or ends with an opening bracket we only have a negative value and not a subtraction
+		if (firstPart.size() > 0 && firstPart[firstPart.size() - 1] != '(')
+			return parseBinaryOperator(expression, selectedOperator);
 	}
-	else if (multiplicationsAndDivisions.size() > 0)
+
+	if (multiplicationsAndDivisions.size() > 0)
 	{
 		string::const_iterator selectedOperator = multiplicationsAndDivisions.back();
 		return parseBinaryOperator(expression, selectedOperator);
 	}
-	else if (potencys.size() > 0)
+	else if (potencies.size() > 0)
 	{
-		string::const_iterator selectedOperator = potencys.front();
+		string::const_iterator selectedOperator = potencies.front();
 		return parseBinaryOperator(expression, selectedOperator);
 	}
-    else if (unaryfunctions.size()>0)
-    {
-        return parseUnaryOperator(expression);
-    }
-    else
+	else if (unaryfunctions.size() > 0)
+		return parseUnaryOperator(expression);
+	else if (expression.find("pi") == 0)
+		return new ValueOperatorNode(pi);
+	else
 		return parseValue(expression);
 }
 
@@ -112,7 +118,7 @@ OperatorNode *OperatorTree::parseBinaryOperator(const string &expression, const 
 		assert(false);
 
 	BinaryOperatorNode *node = new BinaryOperatorNode(operationType);
-	OperatorNode *leftNode = parseRecursive(firstPart);
+	OperatorNode *leftNode = parseRecursive(firstPart);;
 	OperatorNode *rightNode = parseRecursive(secondPart);
 	node->setLeftNode(leftNode);
 	node->setRightNode(rightNode);
@@ -122,36 +128,36 @@ OperatorNode *OperatorTree::parseBinaryOperator(const string &expression, const 
 
 OperatorNode *OperatorTree::parseUnaryOperator(const string &expression)
 {
-    UnaryOperatorNode *result = 0;
-    string childExpression;
+	UnaryOperatorNode *result = 0;
+	string childExpression;
 
-    if (expression.find("sin") == 0)
-    {
-        result = new UnaryOperatorNode(UnaryOperationTypeSine);
-        childExpression = expression.substr(3);
-    }
-    else if (expression.find("cos") == 0)
-    {
-        result = new UnaryOperatorNode(UnaryOperationTypeCosine);
-        childExpression = expression.substr(3);
-    }
-    else if (expression.find("tan") == 0)
-    {
-        result = new UnaryOperatorNode(UnaryOperationTypeTangens);
-        childExpression = expression.substr(3);
-    }
-    else if (expression.find("exp") == 0)
-    {
-        result = new UnaryOperatorNode(UnaryOperationTypeExponential);
-        childExpression = expression.substr(3);
-    }
-    else
-        assert(false);
+	if (expression.find("sin") == 0)
+	{
+		result = new UnaryOperatorNode(UnaryOperationTypeSine);
+		childExpression = expression.substr(3);
+	}
+	else if (expression.find("cos") == 0)
+	{
+		result = new UnaryOperatorNode(UnaryOperationTypeCosine);
+		childExpression = expression.substr(3);
+	}
+	else if (expression.find("tan") == 0)
+	{
+		result = new UnaryOperatorNode(UnaryOperationTypeTangens);
+		childExpression = expression.substr(3);
+	}
+	else if (expression.find("exp") == 0)
+	{
+		result = new UnaryOperatorNode(UnaryOperationTypeExponential);
+		childExpression = expression.substr(3);
+	}
+	else
+		assert(false);
 
-    OperatorNode *child = parseRecursive(childExpression);
-    result->setNode(child);
+	OperatorNode *child = parseRecursive(childExpression);
+	result->setNode(child);
 
-    return result;
+	return result;
 }
 
 
@@ -236,10 +242,10 @@ vector<string::const_iterator> OperatorTree::findAdditionsAndSubtractionsNotInsi
 
 vector<string::const_iterator> OperatorTree::findUnaryFunctionsNotInside(const string &expression, const vector<OperatorTree::bracketPair> &bracketPairs)
 {
-    vector<string::const_iterator> result;
-    vector<string::const_iterator> allOperations = findAllUnaryFunctionsSorted(expression);
+	vector<string::const_iterator> result;
+	vector<string::const_iterator> allOperations = findAllUnaryFunctionsSorted(expression);
 
-    return findOperationsNotInside(allOperations, bracketPairs);
+	return findOperationsNotInside(allOperations, bracketPairs);
 }
 
 vector<string::const_iterator> OperatorTree::findOperationsNotInside(const vector<string::const_iterator> &operations, const vector<OperatorTree::bracketPair> &bracketPairs)
@@ -276,41 +282,41 @@ vector<string::const_iterator> OperatorTree::findMultiplicationsAndDivisions(con
 
 vector<string::const_iterator> OperatorTree::findAllUnaryFunctionsSorted(const string &expression)
 {
-    vector<string::const_iterator>  Position;
-    vector<string::const_iterator>  BufPosition;
-    BufPosition=findUnaryFunctions(expression,"sin");
-    Position.insert(Position.end(),BufPosition.begin(),BufPosition.end());
-    BufPosition=findUnaryFunctions(expression,"cos");
-    Position.insert(Position.end(),BufPosition.begin(),BufPosition.end());
-    BufPosition=findUnaryFunctions(expression,"tan");
-    Position.insert(Position.end(),BufPosition.begin(),BufPosition.end());
-    BufPosition=findUnaryFunctions(expression,"exp");
-    Position.insert(Position.end(),BufPosition.begin(),BufPosition.end());
-    sort(Position.begin(), Position.end());
-    return Position;
+	vector<string::const_iterator>  Position;
+	vector<string::const_iterator>  BufPosition;
+	BufPosition=findUnaryFunctions(expression,"sin");
+	Position.insert(Position.end(),BufPosition.begin(),BufPosition.end());
+	BufPosition=findUnaryFunctions(expression,"cos");
+	Position.insert(Position.end(),BufPosition.begin(),BufPosition.end());
+	BufPosition=findUnaryFunctions(expression,"tan");
+	Position.insert(Position.end(),BufPosition.begin(),BufPosition.end());
+	BufPosition=findUnaryFunctions(expression,"exp");
+	Position.insert(Position.end(),BufPosition.begin(),BufPosition.end());
+	sort(Position.begin(), Position.end());
+	return Position;
 }
 
 
 vector<string::const_iterator> OperatorTree::findUnaryFunctions(const string &expression, const string &func)
 {
-    vector<string::const_iterator> Positions;
-    string::const_iterator lastPosition = expression.begin();
+	vector<string::const_iterator> Positions;
+	string::const_iterator lastPosition = expression.begin();
 
-    do
-    {
-        size_t foundPosition = expression.find(func, lastPosition - expression.begin());
+	do
+	{
+		size_t foundPosition = expression.find(func, lastPosition - expression.begin());
 
-        if (foundPosition != string::npos)
-            lastPosition = expression.begin() + foundPosition;
-        else
-            lastPosition = expression.end();
+		if (foundPosition != string::npos)
+			lastPosition = expression.begin() + foundPosition;
+		else
+			lastPosition = expression.end();
 
-        Positions.push_back(lastPosition);
-        ++lastPosition;
-    } while(Positions.back() != expression.end());
+		Positions.push_back(lastPosition);
+		++lastPosition;
+	} while(Positions.back() != expression.end());
 
-    Positions.pop_back();
-    return Positions;
+	Positions.pop_back();
+	return Positions;
 }
 
 vector<string::const_iterator> OperatorTree::findAdditionsAndSubtractions(const string &expression)

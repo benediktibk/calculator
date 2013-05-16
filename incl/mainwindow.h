@@ -2,7 +2,12 @@
 #define MAINWINDOWCONTROLLER_H
 
 #include <QMainWindow>
-#include "ui_mainwindow.h"
+
+namespace Ui
+{
+	class MainWindow;
+}
+class QLineEdit;
 
 class MainWindow :
 		public QMainWindow
@@ -12,8 +17,24 @@ class MainWindow :
 public:
 	MainWindow();
 
+private slots:
+	void digitClicked();
+	void dotClicked();
+	void operatorClicked();
+
+	void equalClicked();
+
+	void clearAllClicked();
+	void backspaceClicked();
+	void exitClicked();
+
 private:
-	Ui_MainWindow m_ui;
+	void connectButtons();
+
+private:
+	Ui::MainWindow* m_ui;
+	QLineEdit *input;
+	QLineEdit *display;
 };
 
 #endif
