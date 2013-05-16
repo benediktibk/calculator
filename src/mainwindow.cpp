@@ -10,7 +10,7 @@ MainWindow::MainWindow() :
 	input = m_ui->inputLineEdit;
 	display = m_ui->displayLineEdit;
 
-	this->setFixedSize(550, 380);
+    this->setFixedSize(550, 440);
 	display->setText(tr("0"));
     input->setFocus();
     m_ui->divisionButton->setText(tr("\367"));
@@ -42,8 +42,10 @@ void MainWindow::connectButtons()
 	connect(m_ui->substractButton, SIGNAL(clicked()), this, SLOT(operatorClicked()));
 	connect(m_ui->divisionButton, SIGNAL(clicked()), this, SLOT(operatorClicked()));
 	connect(m_ui->potencyButton, SIGNAL(clicked()), this, SLOT(operatorClicked()));
+
 	connect(m_ui->bracketOpenButton, SIGNAL(clicked()), this, SLOT(operatorClicked()));
 	connect(m_ui->bracketCloseButton, SIGNAL(clicked()), this, SLOT(operatorClicked()));
+    connect(m_ui->piButton, SIGNAL(clicked()), this, SLOT(operatorClicked()));
 
     connect(m_ui->exponentialButton, SIGNAL(clicked()), this, SLOT(unaryOperatorClicked()));
     connect(m_ui->sinButton, SIGNAL(clicked()), this, SLOT(unaryOperatorClicked()));
