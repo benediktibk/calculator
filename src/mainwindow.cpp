@@ -143,7 +143,7 @@ void MainWindow::equalClicked()
 			display->setText(tr("Math Error!"));
 		else
 		{
-            display->setText(QString::number(result,'g' ,8));
+            display->setText(QString::number(result,'g' ,9));
 			m_lastAnswer = result;
 		}
 
