@@ -10,6 +10,7 @@ class OperatorTreeTest :
 	 CPPUNIT_TEST_SUITE(OperatorTreeTest);
 	 CPPUNIT_TEST(constructor_validStringWithAdditionSubtractionMultiplicationDivisionAndParentheses_notParsingFailed);
 	 CPPUNIT_TEST(calculateValue_validStringWithAdditionSubtractionMultiplicationDivisionAndParentheses_correctValue);
+	 CPPUNIT_TEST(calculateValue_validStringWithAdditionSubtractionMultiplicationDivisionAndParentheses_noError);
 	 CPPUNIT_TEST(calculateValue_addition_correctValue);
 	 CPPUNIT_TEST(calculateValue_multiplication_correctValue);
 	 CPPUNIT_TEST(calculateValue_subtraction_correctValue);
@@ -43,6 +44,7 @@ class OperatorTreeTest :
 private:
 	 void constructor_validStringWithAdditionSubtractionMultiplicationDivisionAndParentheses_notParsingFailed();
 	 void calculateValue_validStringWithAdditionSubtractionMultiplicationDivisionAndParentheses_correctValue();
+	 void calculateValue_validStringWithAdditionSubtractionMultiplicationDivisionAndParentheses_noError();
 	 void calculateValue_addition_correctValue();
 	 void calculateValue_multiplication_correctValue();
 	 void calculateValue_subtraction_correctValue();

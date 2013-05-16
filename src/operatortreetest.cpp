@@ -25,6 +25,17 @@ void OperatorTreeTest::calculateValue_validStringWithAdditionSubtractionMultipli
 	CPPUNIT_ASSERT_DOUBLES_EQUAL(15.9618654560, tree.calculateValue(error), 0.000001);
 }
 
+void OperatorTreeTest::calculateValue_validStringWithAdditionSubtractionMultiplicationDivisionAndParentheses_noError()
+{
+	string expression("5.2+6*(4-2)-3/2.423");
+	bool error;
+	OperatorTree tree(expression);
+
+	tree.calculateValue(error);
+
+	CPPUNIT_ASSERT(!error);
+}
+
 void OperatorTreeTest::calculateValue_addition_correctValue()
 {
 	string expression("2+3");
