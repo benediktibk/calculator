@@ -59,6 +59,10 @@ void MainWindow::connectButtons()
 	connect(m_ui->sinButton, SIGNAL(clicked()), this, SLOT(unaryOperatorClicked()));
 	connect(m_ui->cosButton, SIGNAL(clicked()), this, SLOT(unaryOperatorClicked()));
 	connect(m_ui->tanButton, SIGNAL(clicked()), this, SLOT(unaryOperatorClicked()));
+    connect(m_ui->asinButton, SIGNAL(clicked()), this, SLOT(unaryOperatorClicked()));
+    connect(m_ui->acosButton, SIGNAL(clicked()), this, SLOT(unaryOperatorClicked()));
+    connect(m_ui->atanButton, SIGNAL(clicked()), this, SLOT(unaryOperatorClicked()));
+    connect(m_ui->lnButton, SIGNAL(clicked()), this, SLOT(unaryOperatorClicked()));
 
 	connect(m_ui->equalButton, SIGNAL(clicked()), this, SLOT(equalClicked()));
 	connect(m_ui->inputLineEdit, SIGNAL(returnPressed()), this, SLOT(equalClicked()));
