@@ -70,13 +70,14 @@ void MainWindow::operatorClicked()
 void MainWindow::equalClicked()
 {
 	const std::string myCalculationString(input->text().toStdString());
+	bool error;
 
 	OperatorTree myCalculation(myCalculationString);
 
 	if (myCalculation.parsingFailed())
 		display->setText(tr("Parsing failed"));
 	else
-		display->setText(QString::number(myCalculation.calculateValue()));
+		display->setText(QString::number(myCalculation.calculateValue(error)));
 }
 
 void MainWindow::backspaceClicked()

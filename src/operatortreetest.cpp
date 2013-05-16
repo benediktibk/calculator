@@ -264,19 +264,21 @@ void OperatorTreeTest::calculateValue_TangensWithParentheses_correctValue()
 void OperatorTreeTest::calculateValue_pi_pi()
 {
 	string expression("pi");
+	bool error;
 
 	OperatorTree tree(expression);
 
-	CPPUNIT_ASSERT_DOUBLES_EQUAL(pi, tree.calculateValue(), 0.000001);
+	CPPUNIT_ASSERT_DOUBLES_EQUAL(pi, tree.calculateValue(error), 0.000001);
 }
 
 void OperatorTreeTest::calculateValue_piAndAddition_correctValue()
 {
 	string expression("pi+2");
+	bool error;
 
 	OperatorTree tree(expression);
 
-	CPPUNIT_ASSERT_DOUBLES_EQUAL(5.141592654, tree.calculateValue(), 0.000001);
+	CPPUNIT_ASSERT_DOUBLES_EQUAL(5.141592654, tree.calculateValue(error), 0.000001);
 }
 
 void OperatorTreeTest::constructor_negativeValueInBrackets_notParsingFailed()
@@ -291,8 +293,9 @@ void OperatorTreeTest::constructor_negativeValueInBrackets_notParsingFailed()
 void OperatorTreeTest::calculateValue_negativeOneInBrackets_minusOne()
 {
 	string expression("(-1)");
+	bool error;
 
 	OperatorTree tree(expression);
 
-	CPPUNIT_ASSERT_DOUBLES_EQUAL(-1, tree.calculateValue(), 0.000001);
+	CPPUNIT_ASSERT_DOUBLES_EQUAL(-1, tree.calculateValue(error), 0.000001);
 }
