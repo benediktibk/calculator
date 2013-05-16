@@ -310,3 +310,14 @@ void OperatorTreeTest::calculateValue_negativeOneInBrackets_minusOne()
 
 	CPPUNIT_ASSERT_DOUBLES_EQUAL(-1, tree.calculateValue(error), 0.000001);
 }
+
+void OperatorTreeTest::calculateValue_divisionByZero_error()
+{
+	string expression("4/0");
+	bool error;
+	OperatorTree tree(expression);
+
+	tree.calculateValue(error);
+
+	CPPUNIT_ASSERT(error);
+}

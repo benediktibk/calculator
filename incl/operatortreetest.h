@@ -39,6 +39,7 @@ class OperatorTreeTest :
 	 CPPUNIT_TEST(calculateValue_piAndAddition_correctValue);
 	 CPPUNIT_TEST(constructor_negativeValueInBrackets_notParsingFailed);
 	 CPPUNIT_TEST(calculateValue_negativeOneInBrackets_minusOne);
+	 CPPUNIT_TEST(calculateValue_divisionByZero_error);
 	 CPPUNIT_TEST_SUITE_END();
 
 private:
@@ -73,6 +74,7 @@ private:
 	 void calculateValue_piAndAddition_correctValue();
 	 void constructor_negativeValueInBrackets_notParsingFailed();
 	 void calculateValue_negativeOneInBrackets_minusOne();
+	 void calculateValue_divisionByZero_error();
 };
 
 #endif
