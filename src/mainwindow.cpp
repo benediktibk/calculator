@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "operatortree.h"
 #include "ui_mainwindow.h"
+#include <assert.h>
 
 MainWindow::MainWindow() :
 	QMainWindow(0),
@@ -114,9 +115,17 @@ void MainWindow::unaryOperatorClicked()
 void MainWindow::equalClicked()
 {
 	const std::string myCalculationString(input->text().toStdString());
+	AngleType angleType;
 	bool error;
 
-	OperatorTree myCalculation(myCalculationString, m_lastAnswer, AngleTypeRadiant);
+	if (m_ui->degreeRadioButton->isChecked())
+		angleType = AngleTypeDegree;
+	else if (m_ui->radiantRadioButton->isChecked())
+		angleType = AngleTypeRadiant;
+	else
+		assert(false);
+
+	OperatorTree myCalculation(myCalculationString, m_lastAnswer, angleType);
 
 	if (myCalculation.parsingFailed())
 		display->setText(tr("Syntax Error!"));
