@@ -23,6 +23,7 @@ private slots:
 	void operatorClicked();
     void unaryOperatorClicked();
 	void equalClicked();
+    void clearClicked();
 	void clearAllClicked();
 	void backspaceClicked();
 	void exitClicked();

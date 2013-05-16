@@ -17,6 +17,7 @@ MainWindow::MainWindow() :
     m_ui->divisionButton->setText(tr("\367"));
     m_ui->multiplicateButton->setText(tr("\327"));
     m_ui->piButton->setText(QString(QChar(0x03C0)));
+    m_ui->backspaceButton->setText(QString(QChar(0x2190)));
 
 	connectButtons();
 }
@@ -25,6 +26,7 @@ void MainWindow::connectButtons()
 {
 	connect(m_ui->backspaceButton, SIGNAL(clicked()), this, SLOT(backspaceClicked()));
 	connect(m_ui->clearAllButton, SIGNAL(clicked()), this, SLOT(clearAllClicked()));
+    connect(m_ui->clearButton, SIGNAL(clicked()), this, SLOT(clearClicked()));
 	connect(m_ui->exitButton, SIGNAL(clicked()), this, SLOT(exitClicked()));
 
 	connect(m_ui->digit0Button, SIGNAL(clicked()), this, SLOT(digitClicked()));
@@ -145,6 +147,12 @@ void MainWindow::backspaceClicked()
 	input->setText(text);
     input->setFocus();
     input->setCursorPosition(cursorPosition - 1);
+
+}
+
+void MainWindow::clearClicked()
+{
+    input->setText("");
 
 }
 
