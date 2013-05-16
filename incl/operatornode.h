@@ -8,7 +8,7 @@ class OperatorNode
 public:
 	virtual ~OperatorNode();
 
-	virtual double getValue() const = 0;
+	virtual double getValue(bool &error) const = 0;
 };
 
 #endif

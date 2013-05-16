@@ -11,7 +11,7 @@ public:
 	BinaryOperatorNode(BinaryOperationType operationType);
 	virtual ~BinaryOperatorNode();
 
-	virtual double getValue() const;
+	virtual double getValue(bool &error) const;
 	void setLeftNode(OperatorNode *node);
 	void setRightNode(OperatorNode *node);
 	bool leftAndRightSet() const;
