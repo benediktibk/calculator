@@ -10,17 +10,19 @@
 using namespace std;
 
 OperatorTree::OperatorTree(const string &expression) :
+	m_ans(0),
+	m_angleType(AngleTypeRadiant),
 	m_rootNode(0),
-	m_parsingFailed(false),
-	m_ans(0)
+	m_parsingFailed(false)
 {
 	parse(expression);
 }
 
-OperatorTree::OperatorTree(const string &expression, double lastAnswer) :
+OperatorTree::OperatorTree(const string &expression, double lastAnswer, AngleType angleType) :
+	m_ans(lastAnswer),
+	m_angleType(angleType),
 	m_rootNode(0),
-	m_parsingFailed(false),
-	m_ans(lastAnswer)
+	m_parsingFailed(false)
 {
 	parse(expression);
 }

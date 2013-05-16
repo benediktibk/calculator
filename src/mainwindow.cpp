@@ -4,20 +4,20 @@
 
 MainWindow::MainWindow() :
 	QMainWindow(0),
-    m_ui(new Ui::MainWindow),
-    m_lastAnswer(0)
+	m_ui(new Ui::MainWindow),
+	m_lastAnswer(0)
 {
 	m_ui->setupUi(this);
 	input = m_ui->inputLineEdit;
 	display = m_ui->displayLineEdit;
 
-    this->setFixedSize(550, 440);
+	this->setFixedSize(550, 440);
 	display->setText(tr("0"));
-    input->setFocus();
-    m_ui->divisionButton->setText(tr("\367"));
-    m_ui->multiplicateButton->setText(tr("\327"));
-    m_ui->piButton->setText(QString(QChar(0x03C0)));
-    m_ui->backspaceButton->setText(QString(QChar(0x2190)));
+	input->setFocus();
+	m_ui->divisionButton->setText(tr("\367"));
+	m_ui->multiplicateButton->setText(tr("\327"));
+	m_ui->piButton->setText(QString(QChar(0x03C0)));
+	m_ui->backspaceButton->setText(QString(QChar(0x2190)));
 
 	connectButtons();
 }
@@ -26,7 +26,7 @@ void MainWindow::connectButtons()
 {
 	connect(m_ui->backspaceButton, SIGNAL(clicked()), this, SLOT(backspaceClicked()));
 	connect(m_ui->clearAllButton, SIGNAL(clicked()), this, SLOT(clearAllClicked()));
-    connect(m_ui->clearButton, SIGNAL(clicked()), this, SLOT(clearClicked()));
+	connect(m_ui->clearButton, SIGNAL(clicked()), this, SLOT(clearClicked()));
 	connect(m_ui->exitButton, SIGNAL(clicked()), this, SLOT(exitClicked()));
 
 	connect(m_ui->digit0Button, SIGNAL(clicked()), this, SLOT(digitClicked()));
@@ -49,13 +49,13 @@ void MainWindow::connectButtons()
 
 	connect(m_ui->bracketOpenButton, SIGNAL(clicked()), this, SLOT(operatorClicked()));
 	connect(m_ui->bracketCloseButton, SIGNAL(clicked()), this, SLOT(operatorClicked()));
-    connect(m_ui->piButton, SIGNAL(clicked()), this, SLOT(operatorClicked()));
-    connect(m_ui->ansButton, SIGNAL(clicked()), this, SLOT(operatorClicked()));
+	connect(m_ui->piButton, SIGNAL(clicked()), this, SLOT(operatorClicked()));
+	connect(m_ui->ansButton, SIGNAL(clicked()), this, SLOT(operatorClicked()));
 
-    connect(m_ui->exponentialButton, SIGNAL(clicked()), this, SLOT(unaryOperatorClicked()));
-    connect(m_ui->sinButton, SIGNAL(clicked()), this, SLOT(unaryOperatorClicked()));
-    connect(m_ui->cosButton, SIGNAL(clicked()), this, SLOT(unaryOperatorClicked()));
-    connect(m_ui->tanButton, SIGNAL(clicked()), this, SLOT(unaryOperatorClicked()));
+	connect(m_ui->exponentialButton, SIGNAL(clicked()), this, SLOT(unaryOperatorClicked()));
+	connect(m_ui->sinButton, SIGNAL(clicked()), this, SLOT(unaryOperatorClicked()));
+	connect(m_ui->cosButton, SIGNAL(clicked()), this, SLOT(unaryOperatorClicked()));
+	connect(m_ui->tanButton, SIGNAL(clicked()), this, SLOT(unaryOperatorClicked()));
 
 	connect(m_ui->equalButton, SIGNAL(clicked()), this, SLOT(equalClicked()));
 	connect(m_ui->inputLineEdit, SIGNAL(returnPressed()), this, SLOT(equalClicked()));
@@ -64,27 +64,27 @@ void MainWindow::connectButtons()
 
 void MainWindow::insertStringToInputAtCurrentCursorPosition(const QString &insertText)
 {
-    QString inputText = input->text();
-    int cursorPosition = input->cursorPosition();
+	QString inputText = input->text();
+	int cursorPosition = input->cursorPosition();
 
-    inputText.insert(cursorPosition, insertText);
-    input->setText(inputText);
-    input->setFocus();
-    input->setCursorPosition(cursorPosition + insertText.length());
+	inputText.insert(cursorPosition, insertText);
+	input->setText(inputText);
+	input->setFocus();
+	input->setCursorPosition(cursorPosition + insertText.length());
 }
 
 void MainWindow::digitClicked()
 {
 	QPushButton *clickedButton = qobject_cast<QPushButton *>(sender());
 
-    insertStringToInputAtCurrentCursorPosition(clickedButton->text());
+	insertStringToInputAtCurrentCursorPosition(clickedButton->text());
 }
 
 void MainWindow::dotClicked()
 {
-    QString clickedOperator = tr(".");
+	QString clickedOperator = tr(".");
 
-    insertStringToInputAtCurrentCursorPosition(clickedOperator);
+	insertStringToInputAtCurrentCursorPosition(clickedOperator);
 }
 
 void MainWindow::operatorClicked()
@@ -92,23 +92,23 @@ void MainWindow::operatorClicked()
 	QPushButton *clickedButton = qobject_cast<QPushButton *>(sender());
 	QString clickedOperator = clickedButton->text();
 
-    if (clickedOperator == tr("\327"))
-        clickedOperator = tr("*");
-    else if (clickedOperator == tr("\367"))
-        clickedOperator = tr("/");
-    else if (clickedOperator == QString(QChar(0x03C0)))
-        clickedOperator = tr("pi");
+	if (clickedOperator == tr("\327"))
+		clickedOperator = tr("*");
+	else if (clickedOperator == tr("\367"))
+		clickedOperator = tr("/");
+	else if (clickedOperator == QString(QChar(0x03C0)))
+		clickedOperator = tr("pi");
 
-    insertStringToInputAtCurrentCursorPosition(clickedOperator);
+	insertStringToInputAtCurrentCursorPosition(clickedOperator);
 }
 
 void MainWindow::unaryOperatorClicked()
 {
-    QPushButton *clickedButton = qobject_cast<QPushButton *>(sender());
-    QString clickedOperator = clickedButton->text();
-    clickedOperator += tr("(");
+	QPushButton *clickedButton = qobject_cast<QPushButton *>(sender());
+	QString clickedOperator = clickedButton->text();
+	clickedOperator += tr("(");
 
-    insertStringToInputAtCurrentCursorPosition(clickedOperator);
+	insertStringToInputAtCurrentCursorPosition(clickedOperator);
 }
 
 void MainWindow::equalClicked()
@@ -116,51 +116,51 @@ void MainWindow::equalClicked()
 	const std::string myCalculationString(input->text().toStdString());
 	bool error;
 
-    OperatorTree myCalculation(myCalculationString, m_lastAnswer);
+	OperatorTree myCalculation(myCalculationString, m_lastAnswer, AngleTypeRadiant);
 
 	if (myCalculation.parsingFailed())
-        display->setText(tr("Syntax Error!"));
+		display->setText(tr("Syntax Error!"));
 	else
-    {
-        double result;
-        result = myCalculation.calculateValue(error);
-        if (error)
-            display->setText(tr("Math Error!"));
-        else
-        {
-            display->setText(QString::number(result));
-            m_lastAnswer = result;
-        }
+	{
+		double result;
+		result = myCalculation.calculateValue(error);
+		if (error)
+			display->setText(tr("Math Error!"));
+		else
+		{
+			display->setText(QString::number(result));
+			m_lastAnswer = result;
+		}
 
-    }
+	}
 }
 
 void MainWindow::backspaceClicked()
 {
 	QString text = input->text();
-    int cursorPosition = input->cursorPosition();
+	int cursorPosition = input->cursorPosition();
 
 	if (text.isEmpty())
 		return;
 
-    text.remove(cursorPosition -1, 1);
+	text.remove(cursorPosition -1, 1);
 	input->setText(text);
-    input->setFocus();
-    input->setCursorPosition(cursorPosition - 1);
+	input->setFocus();
+	input->setCursorPosition(cursorPosition - 1);
 
 }
 
 void MainWindow::clearClicked()
 {
-    input->setText("");
-    display->setText("");
+	input->setText("");
+	display->setText("");
 }
 
 void MainWindow::clearAllClicked()
 {
 	display->setText("0");
 	input->setText("");
-    m_lastAnswer = 0;
+	m_lastAnswer = 0;
 }
 
 void MainWindow::exitClicked()

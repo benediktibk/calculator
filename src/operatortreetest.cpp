@@ -345,7 +345,7 @@ void OperatorTreeTest::constructor_ansFirstUse()
 	string expression("ans");
 	bool error;
 
-	OperatorTree tree(expression, 0.0);
+	OperatorTree tree(expression, 0.0, AngleTypeRadiant);
 
 	CPPUNIT_ASSERT_DOUBLES_EQUAL(0, tree.calculateValue(error), 0.000001);
 }
@@ -355,7 +355,7 @@ void OperatorTreeTest::constructor_ansNotFirstUseAndAdition()
 	string expression("ans+2");
 	bool error;
 
-	OperatorTree tree(expression, 3.0);
+	OperatorTree tree(expression, 3.0, AngleTypeRadiant);
 
 	CPPUNIT_ASSERT_DOUBLES_EQUAL(5, tree.calculateValue(error), 0.000001);
 }
@@ -364,7 +364,7 @@ void OperatorTreeTest::constructor_ansTwoInARow_parsingFailed()
 {
 	string expression("ansans");
 
-	OperatorTree tree(expression, 0.0);
+	OperatorTree tree(expression, 0.0, AngleTypeRadiant);
 
 	CPPUNIT_ASSERT(tree.parsingFailed());
 }
@@ -373,7 +373,7 @@ void OperatorTreeTest::constructor_twoWhiteSpaces_notParsingFailed()
 {
 	string expression("1 - 3");
 
-	OperatorTree tree(expression, 0.0);
+	OperatorTree tree(expression, 0.0, AngleTypeRadiant);
 
 	CPPUNIT_ASSERT(!tree.parsingFailed());
 }
@@ -383,7 +383,7 @@ void OperatorTreeTest::constructor_absin_parsingFailed()
 	CPPUNIT_ASSERT(false); // remove this if the following test doesn't crash anymore
 	string expression("absin");
 
-	OperatorTree tree(expression, 0.0);
+	OperatorTree tree(expression, 0.0, AngleTypeRadiant);
 
 	CPPUNIT_ASSERT(tree.parsingFailed());
 }
@@ -393,7 +393,7 @@ void OperatorTreeTest::constructor_minusexp0_parsingFailed()
 	CPPUNIT_ASSERT(false); // remove this if the following test doesn't crash anymore
 	string expression("-exp(0)");
 
-	OperatorTree tree(expression, 0.0);
+	OperatorTree tree(expression, 0.0, AngleTypeRadiant);
 
 	CPPUNIT_ASSERT(tree.parsingFailed());
 }
