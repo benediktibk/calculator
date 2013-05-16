@@ -12,12 +12,14 @@ public:
 	UnaryOperatorNode(UnaryOperationType operationType);
 	virtual ~UnaryOperatorNode();
 
-	virtual double getValue(bool &error) const;
+    void changeModeDegRad(bool mode);
+    virtual double getValue(bool &error) const;
 	void setNode(OperatorNode *node);
 
 private:
 	const UnaryOperationType m_operationType;
 	OperatorNode *m_node;
+    bool m_changeToDegree;
 
 };
 
