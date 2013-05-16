@@ -269,7 +269,6 @@ void OperatorTreeTest::constructor_negativeValueInBrackets_notParsingFailed()
 
 void OperatorTreeTest::calculateValue_negativeOneInBrackets_minusOne()
 {
-	CPPUNIT_ASSERT(false);
 	string expression("(-1)");
 
 	OperatorTree tree(expression);

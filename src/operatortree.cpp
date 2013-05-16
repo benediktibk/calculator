@@ -71,9 +71,14 @@ OperatorNode *OperatorTree::parseIfNotEnclosedInBrackets(const string &expressio
 	if (additionsAndSubtractions.size() > 0)
 	{
 		string::const_iterator selectedOperator = additionsAndSubtractions.back();
-		return parseBinaryOperator(expression, selectedOperator);
+		string firstPart(expression.begin(), selectedOperator);
+
+		// if the first part is empty or ends with an opening bracket we only have a negative value and not a subtraction
+		if (firstPart.size() > 0 && firstPart[firstPart.size() - 1] != '(')
+			return parseBinaryOperator(expression, selectedOperator);
 	}
-	else if (multiplicationsAndDivisions.size() > 0)
+
+	if (multiplicationsAndDivisions.size() > 0)
 	{
 		string::const_iterator selectedOperator = multiplicationsAndDivisions.back();
 		return parseBinaryOperator(expression, selectedOperator);
