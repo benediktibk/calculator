@@ -153,7 +153,7 @@ void MainWindow::backspaceClicked()
 void MainWindow::clearClicked()
 {
     input->setText("");
-
+    display->setText("");
 }
 
 void MainWindow::clearAllClicked()
