@@ -4,7 +4,8 @@
 
 MainWindow::MainWindow() :
 	QMainWindow(0),
-	m_ui(new Ui::MainWindow)
+    m_ui(new Ui::MainWindow),
+    m_lastAnswer(0)
 {
 	m_ui->setupUi(this);
 	input = m_ui->inputLineEdit;
@@ -46,6 +47,7 @@ void MainWindow::connectButtons()
 	connect(m_ui->bracketOpenButton, SIGNAL(clicked()), this, SLOT(operatorClicked()));
 	connect(m_ui->bracketCloseButton, SIGNAL(clicked()), this, SLOT(operatorClicked()));
     connect(m_ui->piButton, SIGNAL(clicked()), this, SLOT(operatorClicked()));
+    connect(m_ui->ansButton, SIGNAL(clicked()), this, SLOT(operatorClicked()));
 
     connect(m_ui->exponentialButton, SIGNAL(clicked()), this, SLOT(unaryOperatorClicked()));
     connect(m_ui->sinButton, SIGNAL(clicked()), this, SLOT(unaryOperatorClicked()));
@@ -109,7 +111,7 @@ void MainWindow::equalClicked()
 	const std::string myCalculationString(input->text().toStdString());
 	bool error;
 
-	OperatorTree myCalculation(myCalculationString);
+    OperatorTree myCalculation(myCalculationString, m_lastAnswer);
 
 	if (myCalculation.parsingFailed())
         display->setText(tr("Syntax Error!"));
@@ -120,7 +122,10 @@ void MainWindow::equalClicked()
         if (error)
             display->setText(tr("Math Error!"));
         else
+        {
             display->setText(QString::number(result));
+            m_lastAnswer = result;
+        }
 
     }
 }
@@ -144,6 +149,7 @@ void MainWindow::clearAllClicked()
 {
 	display->setText("0");
 	input->setText("");
+    m_lastAnswer = 0;
 }
 
 void MainWindow::exitClicked()

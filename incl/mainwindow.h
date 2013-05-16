@@ -35,6 +35,7 @@ private:
 	Ui::MainWindow* m_ui;
 	QLineEdit *input;
 	QLineEdit *display;
+    double m_lastAnswer;
 };
 
 #endif
