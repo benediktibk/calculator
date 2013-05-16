@@ -330,3 +330,12 @@ void OperatorTreeTest::constructor_piTwoInARow_parsingFailed()
 
     CPPUNIT_ASSERT(tree.parsingFailed());
 }
+
+void OperatorTreeTest::constructor_twoUnaryFunctionsInARowWithMissingClosingBracket_parsingFailed()
+{
+    string expression("sin(exp(");
+
+    OperatorTree tree(expression);
+
+    CPPUNIT_ASSERT(tree.parsingFailed());
+}
