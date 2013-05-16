@@ -321,3 +321,12 @@ void OperatorTreeTest::calculateValue_divisionByZero_error()
 
 	CPPUNIT_ASSERT(error);
 }
+
+void OperatorTreeTest::constructor_piTwoInARow_parsingFailed()
+{
+    string expression("pipi");
+
+    OperatorTree tree(expression);
+
+    CPPUNIT_ASSERT(tree.parsingFailed());
+}
