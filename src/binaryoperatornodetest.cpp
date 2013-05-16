@@ -87,3 +87,63 @@ void BinaryOperatorNodeTest::getValue_potencyAndLeftValue6AndRightValue2_36()
 
 	CPPUNIT_ASSERT_DOUBLES_EQUAL(36, node.getValue(error), 0.0001);
 }
+
+void BinaryOperatorNodeTest::getValue_additionAndTwoValueNodesSet_noError()
+{
+	BinaryOperatorNode node(BinaryOperationTypeAddition);
+	node.setLeftNode(new ValueOperatorNode(6));
+	node.setRightNode(new ValueOperatorNode(2));
+	bool error;
+
+	node.getValue(error);
+
+	CPPUNIT_ASSERT(!error);
+}
+
+void BinaryOperatorNodeTest::getValue_subtractionAndTwoValueNodesSet_noError()
+{
+	BinaryOperatorNode node(BinaryOperationTypeSubtraction);
+	node.setLeftNode(new ValueOperatorNode(6));
+	node.setRightNode(new ValueOperatorNode(2));
+	bool error;
+
+	node.getValue(error);
+
+	CPPUNIT_ASSERT(!error);
+}
+
+void BinaryOperatorNodeTest::getValue_multiplicationAndTwoValueNodesSet_noError()
+{
+	BinaryOperatorNode node(BinaryOperationTypeMultiplication);
+	node.setLeftNode(new ValueOperatorNode(6));
+	node.setRightNode(new ValueOperatorNode(2));
+	bool error;
+
+	node.getValue(error);
+
+	CPPUNIT_ASSERT(!error);
+}
+
+void BinaryOperatorNodeTest::getValue_divisionAndTwoNonZeroValueNodesSet_noError()
+{
+	BinaryOperatorNode node(BinaryOperationTypeDivision);
+	node.setLeftNode(new ValueOperatorNode(6));
+	node.setRightNode(new ValueOperatorNode(2));
+	bool error;
+
+	node.getValue(error);
+
+	CPPUNIT_ASSERT(!error);
+}
+
+void BinaryOperatorNodeTest::getValue_divisionAndRightValueZero_error()
+{
+	BinaryOperatorNode node(BinaryOperationTypeDivision);
+	node.setLeftNode(new ValueOperatorNode(6));
+	node.setRightNode(new ValueOperatorNode(0));
+	bool error;
+
+	node.getValue(error);
+
+	CPPUNIT_ASSERT(error);
+}

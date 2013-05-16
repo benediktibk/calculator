@@ -1,6 +1,7 @@
 #include "unaryoperatornodetest.h"
 #include "unaryoperatornode.h"
 #include "valueoperatornode.h"
+#include "operatornodestub.h"
 
 using namespace std;
 
@@ -49,4 +50,26 @@ void UnaryOperatorNodeTest::getValue_exponentialAndNode1_271828()
 	bool error;
 
 	CPPUNIT_ASSERT_DOUBLES_EQUAL(2.71828, node.getValue(error), 0.0001);
+}
+
+void UnaryOperatorNodeTest::getValue_nodeProducesNoError_noError()
+{
+	UnaryOperatorNode node(UnaryOperationTypeExponential);
+	node.setNode(new OperatorNodeStub(false));
+	bool error;
+
+	node.getValue(error);
+
+	CPPUNIT_ASSERT(!error);
+}
+
+void UnaryOperatorNodeTest::getValue_nodeProducesError_error()
+{
+	UnaryOperatorNode node(UnaryOperationTypeExponential);
+	node.setNode(new OperatorNodeStub(true));
+	bool error;
+
+	node.getValue(error);
+
+	CPPUNIT_ASSERT(error);
 }
