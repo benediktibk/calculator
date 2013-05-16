@@ -11,18 +11,18 @@ using namespace std;
 
 OperatorTree::OperatorTree(const string &expression) :
 	m_rootNode(0),
-    m_parsingFailed(false),
-    m_ans(0)
+	m_parsingFailed(false),
+	m_ans(0)
 {
 	parse(expression);
 }
 
 OperatorTree::OperatorTree(const string &expression, double lastAnswer) :
-    m_rootNode(0),
-    m_parsingFailed(false),
-    m_ans(lastAnswer)
+	m_rootNode(0),
+	m_parsingFailed(false),
+	m_ans(lastAnswer)
 {
-    parse(expression);
+	parse(expression);
 }
 
 OperatorTree::~OperatorTree()
@@ -33,7 +33,9 @@ OperatorTree::~OperatorTree()
 
 void OperatorTree::parse(string expression)
 {
-	remove(expression.begin(), expression.end(), ' ');
+	string::iterator newEnd = remove(expression.begin(), expression.end(), ' ');
+	string temporaryExpression(expression.begin(), newEnd);
+	expression = temporaryExpression;
 
 	if (expression.size() == 0)
 		m_rootNode = new ValueOperatorNode(0);
@@ -105,8 +107,8 @@ OperatorNode *OperatorTree::parseIfNotEnclosedInBrackets(const string &expressio
 		return parseUnaryOperator(expression);
 	else if (expression.compare("pi") == 0)
 		return new ValueOperatorNode(pi);
-    else if (expression.compare("ans") == 0)
-        return new ValueOperatorNode(m_ans);
+	else if (expression.compare("ans") == 0)
+		return new ValueOperatorNode(m_ans);
 	else
 		return parseValue(expression);
 }
