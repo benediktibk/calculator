@@ -3,4 +3,6 @@
 
 #endif // CONSTANT_H
 
-static const double pi = 3.14159265359;
+#include <math.h>
+
+static const double pi = acos(-1.0);
