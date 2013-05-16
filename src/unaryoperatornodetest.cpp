@@ -76,20 +76,30 @@ void UnaryOperatorNodeTest::getValue_nodeProducesError_error()
 
 void UnaryOperatorNodeTest::getValue_sineInDegAndNode360_0()
 {
-    UnaryOperatorNode node(UnaryOperationTypeSine);
-    node.changeModeDegRad(true);
-    node.setNode(new ValueOperatorNode(360));
-    bool error;
+	UnaryOperatorNode node(UnaryOperationTypeSine);
+	node.changeModeDegRad(true);
+	node.setNode(new ValueOperatorNode(360));
+	bool error;
 
-    CPPUNIT_ASSERT_DOUBLES_EQUAL(0, node.getValue(error), 0.0001);
+	CPPUNIT_ASSERT_DOUBLES_EQUAL(0, node.getValue(error), 0.0001);
 }
 
 void UnaryOperatorNodeTest::getValue_cosineInDegAndNode360_1()
 {
-    UnaryOperatorNode node(UnaryOperationTypeCosine);
-    node.changeModeDegRad(true);
-    node.setNode(new ValueOperatorNode(360));
-    bool error;
+	UnaryOperatorNode node(UnaryOperationTypeCosine);
+	node.changeModeDegRad(true);
+	node.setNode(new ValueOperatorNode(360));
+	bool error;
 
-    CPPUNIT_ASSERT_DOUBLES_EQUAL(1, node.getValue(error), 0.0001);
+	CPPUNIT_ASSERT_DOUBLES_EQUAL(1, node.getValue(error), 0.0001);
+}
+
+void UnaryOperatorNodeTest::getValue_expOf1AndDeg_271828()
+{
+	UnaryOperatorNode node(UnaryOperationTypeExponential);
+	node.setNode(new ValueOperatorNode(1));
+	node.changeModeDegRad(true);
+	bool error;
+
+	CPPUNIT_ASSERT_DOUBLES_EQUAL(2.71828, node.getValue(error), 0.0001);
 }

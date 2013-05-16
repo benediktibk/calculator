@@ -17,8 +17,9 @@ class UnaryOperatorNodeTest :
 	CPPUNIT_TEST(getValue_exponentialAndNode1_271828);
 	CPPUNIT_TEST(getValue_nodeProducesNoError_noError);
 	CPPUNIT_TEST(getValue_nodeProducesError_error);
-    CPPUNIT_TEST(getValue_sineInDegAndNode360_0);
-    CPPUNIT_TEST(getValue_cosineInDegAndNode360_1);
+	CPPUNIT_TEST(getValue_sineInDegAndNode360_0);
+	CPPUNIT_TEST(getValue_cosineInDegAndNode360_1);
+	CPPUNIT_TEST(getValue_expOf1AndDeg_271828);
 	CPPUNIT_TEST_SUITE_END();
 
 private:
@@ -29,8 +30,9 @@ private:
 	void getValue_exponentialAndNode1_271828();
 	void getValue_nodeProducesNoError_noError();
 	void getValue_nodeProducesError_error();
-    void getValue_sineInDegAndNode360_0();
-    void getValue_cosineInDegAndNode360_1();
+	void getValue_sineInDegAndNode360_0();
+	void getValue_cosineInDegAndNode360_1();
+	void getValue_expOf1AndDeg_271828();
 };
 
 
