@@ -380,7 +380,6 @@ void OperatorTreeTest::constructor_twoWhiteSpaces_notParsingFailed()
 
 void OperatorTreeTest::constructor_absin_parsingFailed()
 {
-	CPPUNIT_ASSERT(false); // remove this if the following test doesn't crash anymore
 	string expression("absin");
 
 	OperatorTree tree(expression, 0, AngleTypeRadiant);
@@ -390,7 +389,6 @@ void OperatorTreeTest::constructor_absin_parsingFailed()
 
 void OperatorTreeTest::constructor_minusexp0_parsingFailed()
 {
-	CPPUNIT_ASSERT(false); // remove this if the following test doesn't crash anymore
 	string expression("-exp(0)");
 
 	OperatorTree tree(expression, 0, AngleTypeRadiant);

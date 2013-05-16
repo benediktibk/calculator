@@ -171,7 +171,10 @@ OperatorNode *OperatorTree::parseUnaryOperator(const string &expression)
 		childExpression = expression.substr(3);
 	}
 	else
-		assert(false);
+	{
+		m_parsingFailed = true;
+		return 0;
+	}
 
 	OperatorNode *child = parseRecursive(childExpression);
 	result->setNode(child);
