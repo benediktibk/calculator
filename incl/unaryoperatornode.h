@@ -1,25 +1,24 @@
 #ifndef UNARYOPERATORNODE_H
 #define UNARYOPERATORNODE_H
 
-
 #include "operatornode.h"
 #include "unaryoperationtype.h"
+#include "angletype.h"
 
 class UnaryOperatorNode :
 		public OperatorNode
 {
 public:
-	UnaryOperatorNode(UnaryOperationType operationType);
+	UnaryOperatorNode(UnaryOperationType operationType, AngleType angleType);
 	virtual ~UnaryOperatorNode();
 
-    void changeModeDegRad(bool mode);
-    virtual double getValue(bool &error) const;
+	virtual double getValue(bool &error) const;
 	void setNode(OperatorNode *node);
 
 private:
 	const UnaryOperationType m_operationType;
 	OperatorNode *m_node;
-    bool m_changeToDegree;
+	AngleType m_angleType;
 
 };
 

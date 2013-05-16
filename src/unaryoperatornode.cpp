@@ -6,21 +6,16 @@
 
 using namespace std;
 
-UnaryOperatorNode::UnaryOperatorNode(UnaryOperationType operationType) :
+UnaryOperatorNode::UnaryOperatorNode(UnaryOperationType operationType, AngleType angleType) :
 	m_operationType(operationType),
-    m_node(0),
-    m_changeToDegree(false)
+	m_node(0),
+	m_angleType(angleType)
 { }
 
 UnaryOperatorNode::~UnaryOperatorNode()
 {
 	delete m_node;
 	m_node = 0;
-}
-
-void UnaryOperatorNode::changeModeDegRad(bool mode)
-{
-    m_changeToDegree = mode;
 }
 
 double UnaryOperatorNode::getValue(bool &error) const
@@ -30,10 +25,11 @@ double UnaryOperatorNode::getValue(bool &error) const
 	error = false;
 	double nodeValue = m_node->getValue(error);
 
-    if(m_changeToDegree == true)
-    {
-        nodeValue = nodeValue * pi / 180;
-    }
+	if (	m_angleType == AngleTypeDegree &&
+			(	m_operationType == UnaryOperationTypeSine ||
+				m_operationType == UnaryOperationTypeCosine ||
+				m_operationType == UnaryOperationTypeTangens))
+		nodeValue *= pi/180;
 
 	switch(m_operationType)
 	{

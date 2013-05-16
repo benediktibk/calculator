@@ -9,7 +9,7 @@ CPPUNIT_TEST_SUITE_REGISTRATION(UnaryOperatorNodeTest);
 
 void UnaryOperatorNodeTest::getValue_sineAndNode0_0()
 {
-	UnaryOperatorNode node(UnaryOperationTypeSine);
+	UnaryOperatorNode node(UnaryOperationTypeSine, AngleTypeRadiant);
 	node.setNode(new ValueOperatorNode(0));
 	bool error;
 
@@ -18,7 +18,7 @@ void UnaryOperatorNodeTest::getValue_sineAndNode0_0()
 
 void UnaryOperatorNodeTest::getValue_cosineAndNode0_1()
 {
-	UnaryOperatorNode node(UnaryOperationTypeCosine);
+	UnaryOperatorNode node(UnaryOperationTypeCosine, AngleTypeRadiant);
 	node.setNode(new ValueOperatorNode(0));
 	bool error;
 
@@ -27,7 +27,7 @@ void UnaryOperatorNodeTest::getValue_cosineAndNode0_1()
 
 void UnaryOperatorNodeTest::getValue_tangensAndNode0_0()
 {
-	UnaryOperatorNode node(UnaryOperationTypeTangens);
+	UnaryOperatorNode node(UnaryOperationTypeTangens, AngleTypeRadiant);
 	node.setNode(new ValueOperatorNode(0));
 	bool error;
 
@@ -36,7 +36,7 @@ void UnaryOperatorNodeTest::getValue_tangensAndNode0_0()
 
 void UnaryOperatorNodeTest::getValue_exponentialAndNode0_1()
 {
-	UnaryOperatorNode node(UnaryOperationTypeExponential);
+	UnaryOperatorNode node(UnaryOperationTypeExponential, AngleTypeRadiant);
 	node.setNode(new ValueOperatorNode(0));
 	bool error;
 
@@ -45,7 +45,7 @@ void UnaryOperatorNodeTest::getValue_exponentialAndNode0_1()
 
 void UnaryOperatorNodeTest::getValue_exponentialAndNode1_271828()
 {
-	UnaryOperatorNode node(UnaryOperationTypeExponential);
+	UnaryOperatorNode node(UnaryOperationTypeExponential, AngleTypeRadiant);
 	node.setNode(new ValueOperatorNode(1));
 	bool error;
 
@@ -54,7 +54,7 @@ void UnaryOperatorNodeTest::getValue_exponentialAndNode1_271828()
 
 void UnaryOperatorNodeTest::getValue_nodeProducesNoError_noError()
 {
-	UnaryOperatorNode node(UnaryOperationTypeExponential);
+	UnaryOperatorNode node(UnaryOperationTypeExponential, AngleTypeRadiant);
 	node.setNode(new OperatorNodeStub(false));
 	bool error;
 
@@ -65,7 +65,7 @@ void UnaryOperatorNodeTest::getValue_nodeProducesNoError_noError()
 
 void UnaryOperatorNodeTest::getValue_nodeProducesError_error()
 {
-	UnaryOperatorNode node(UnaryOperationTypeExponential);
+	UnaryOperatorNode node(UnaryOperationTypeExponential, AngleTypeRadiant);
 	node.setNode(new OperatorNodeStub(true));
 	bool error;
 
@@ -76,8 +76,7 @@ void UnaryOperatorNodeTest::getValue_nodeProducesError_error()
 
 void UnaryOperatorNodeTest::getValue_sineInDegAndNode360_0()
 {
-	UnaryOperatorNode node(UnaryOperationTypeSine);
-	node.changeModeDegRad(true);
+	UnaryOperatorNode node(UnaryOperationTypeSine, AngleTypeDegree);
 	node.setNode(new ValueOperatorNode(360));
 	bool error;
 
@@ -86,8 +85,7 @@ void UnaryOperatorNodeTest::getValue_sineInDegAndNode360_0()
 
 void UnaryOperatorNodeTest::getValue_cosineInDegAndNode360_1()
 {
-	UnaryOperatorNode node(UnaryOperationTypeCosine);
-	node.changeModeDegRad(true);
+	UnaryOperatorNode node(UnaryOperationTypeCosine, AngleTypeDegree);
 	node.setNode(new ValueOperatorNode(360));
 	bool error;
 
@@ -96,9 +94,8 @@ void UnaryOperatorNodeTest::getValue_cosineInDegAndNode360_1()
 
 void UnaryOperatorNodeTest::getValue_expOf1AndDeg_271828()
 {
-	UnaryOperatorNode node(UnaryOperationTypeExponential);
+	UnaryOperatorNode node(UnaryOperationTypeExponential, AngleTypeDegree);
 	node.setNode(new ValueOperatorNode(1));
-	node.changeModeDegRad(true);
 	bool error;
 
 	CPPUNIT_ASSERT_DOUBLES_EQUAL(2.71828, node.getValue(error), 0.0001);

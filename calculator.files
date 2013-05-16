@@ -27,3 +27,4 @@ src/unaryoperatornodetest.cpp
 incl/constant.h
 incl/operatornodestub.h
 src/operatornodestub.cpp
+incl/angletype.h
