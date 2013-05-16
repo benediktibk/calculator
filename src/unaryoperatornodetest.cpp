@@ -183,3 +183,25 @@ void UnaryOperatorNodeTest::getValue_lnOfNegativeValue_error()
 
 	CPPUNIT_ASSERT(error);
 }
+
+void UnaryOperatorNodeTest::getValue_asinOfValueGreater1_error()
+{
+    UnaryOperatorNode node(UnaryOperationTypeArcSine, AngleTypeRadiant);
+    node.setNode(new ValueOperatorNode(3));
+    bool error;
+
+    node.getValue(error);
+
+    CPPUNIT_ASSERT(error);
+}
+
+void UnaryOperatorNodeTest::getValue_acosOfValueSmallerMinus1_error()
+{
+    UnaryOperatorNode node(UnaryOperationTypeArcCosine, AngleTypeRadiant);
+    node.setNode(new ValueOperatorNode(-4));
+    bool error;
+
+    node.getValue(error);
+
+    CPPUNIT_ASSERT(error);
+}

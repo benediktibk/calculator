@@ -29,6 +29,8 @@ class UnaryOperatorNodeTest :
 	CPPUNIT_TEST(getValue_atanOf05AndDegree_2656505);
 	CPPUNIT_TEST(getValue_ln271828AndDegree_1);
 	CPPUNIT_TEST(getValue_lnOfNegativeValue_error);
+    CPPUNIT_TEST(getValue_asinOfValueGreater1_error);
+    CPPUNIT_TEST(getValue_acosOfValueSmallerMinus1_error);
 	CPPUNIT_TEST_SUITE_END();
 
 private:
@@ -51,6 +53,8 @@ private:
 	void getValue_atanOf05AndDegree_2656505();
 	void getValue_ln271828AndDegree_1();
 	void getValue_lnOfNegativeValue_error();
+    void getValue_asinOfValueGreater1_error();
+    void getValue_acosOfValueSmallerMinus1_error();
 };
 
 
