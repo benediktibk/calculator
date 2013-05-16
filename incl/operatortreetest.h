@@ -42,6 +42,9 @@ class OperatorTreeTest :
 	 CPPUNIT_TEST(calculateValue_divisionByZero_error);
      CPPUNIT_TEST(constructor_piTwoInARow_parsingFailed);
      CPPUNIT_TEST(constructor_twoUnaryFunctionsInARowWithMissingClosingBracket_parsingFailed);
+     CPPUNIT_TEST(constructor_ansFirstUse);
+     CPPUNIT_TEST(constructor_ansNotFirstUseAndAdition);
+     CPPUNIT_TEST(constructor_ansTwoInARow_parsingFailed);
 	 CPPUNIT_TEST_SUITE_END();
 
 private:
@@ -79,6 +82,9 @@ private:
 	 void calculateValue_divisionByZero_error();
      void constructor_piTwoInARow_parsingFailed();
      void constructor_twoUnaryFunctionsInARowWithMissingClosingBracket_parsingFailed();
+     void constructor_ansFirstUse();
+     void constructor_ansNotFirstUseAndAdition();
+     void constructor_ansTwoInARow_parsingFailed();
 };
 
 #endif
