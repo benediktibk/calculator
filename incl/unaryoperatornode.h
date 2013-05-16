@@ -6,18 +6,18 @@
 #include "unaryoperationtype.h"
 
 class UnaryOperatorNode :
-        public OperatorNode
+		public OperatorNode
 {
 public:
-    UnaryOperatorNode(UnaryOperationType operationType);
-    virtual ~UnaryOperatorNode();
+	UnaryOperatorNode(UnaryOperationType operationType);
+	virtual ~UnaryOperatorNode();
 
-    virtual double getValue() const;
-    void setNode(OperatorNode *node);
+	virtual double getValue(bool &error) const;
+	void setNode(OperatorNode *node);
 
 private:
-    const UnaryOperationType m_operationType;
-    OperatorNode *m_node;
+	const UnaryOperationType m_operationType;
+	OperatorNode *m_node;
 
 };
 

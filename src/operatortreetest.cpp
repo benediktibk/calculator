@@ -211,46 +211,50 @@ void OperatorTreeTest::calculateValue_additionAndPotencyWithParentheses_correctV
 }
 void OperatorTreeTest::calculateValue_twoPotenciesUnrelatedTogether_correctValue()
 {
-    string expression("(4+3)^2+5^4*2");
+	string expression("(4+3)^2+5^4*2");
 	bool error;
 
-    OperatorTree tree(expression);
+	OperatorTree tree(expression);
 
 	CPPUNIT_ASSERT_DOUBLES_EQUAL(1299, tree.calculateValue(error), 0.000001);
 }
 
 void OperatorTreeTest::calculateValue_additionAndSineWithParentheses_correctValue()
 {
-    string expression("sin((4+3)^2)+1");
+	string expression("sin((4+3)^2)+1");
+	bool error;
 
-    OperatorTree tree(expression);
+	OperatorTree tree(expression);
 
-    CPPUNIT_ASSERT_DOUBLES_EQUAL(0.046247347, tree.calculateValue(), 0.0001);
+	CPPUNIT_ASSERT_DOUBLES_EQUAL(0.046247347, tree.calculateValue(error), 0.0001);
 }
 
 void OperatorTreeTest::calculateValue_additionAndPotencyAndSineAndExpWithParentheses_correctValue()
 {
-    string expression("2^2*(sin(sin(sin(0)))+exp(0))");
+	string expression("2^2*(sin(sin(sin(0)))+exp(0))");
+	bool error;
 
-    OperatorTree tree(expression);
+	OperatorTree tree(expression);
 
-    CPPUNIT_ASSERT_DOUBLES_EQUAL(4, tree.calculateValue(), 0.001);
+	CPPUNIT_ASSERT_DOUBLES_EQUAL(4, tree.calculateValue(error), 0.001);
 }
 
 void OperatorTreeTest::calculateValue_CosineWithParentheses_correctValue()
 {
-    string expression("cos(3.141592654)");
+	string expression("cos(3.141592654)");
+	bool error;
 
-    OperatorTree tree(expression);
+	OperatorTree tree(expression);
 
-    CPPUNIT_ASSERT_DOUBLES_EQUAL(-1, tree.calculateValue(), 0.0001);
+	CPPUNIT_ASSERT_DOUBLES_EQUAL(-1, tree.calculateValue(error), 0.0001);
 }
 
 void OperatorTreeTest::calculateValue_TangensWithParentheses_correctValue()
 {
-    string expression("tan(1)");
+	string expression("tan(1)");
+	bool error;
 
-    OperatorTree tree(expression);
+	OperatorTree tree(expression);
 
-    CPPUNIT_ASSERT_DOUBLES_EQUAL(1.557408, tree.calculateValue(), 0.001);
+	CPPUNIT_ASSERT_DOUBLES_EQUAL(1.557408, tree.calculateValue(error), 0.001);
 }
