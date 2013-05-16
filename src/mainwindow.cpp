@@ -12,6 +12,7 @@ MainWindow::MainWindow() :
 
 	this->setFixedSize(550, 380);
 	display->setText(tr("0"));
+    input->setFocus();
 
 	connectButtons();
 }
@@ -88,9 +89,17 @@ void MainWindow::equalClicked()
 	OperatorTree myCalculation(myCalculationString);
 
 	if (myCalculation.parsingFailed())
-		display->setText(tr("Parsing failed"));
+        display->setText(tr("Syntax Error!"));
 	else
-		display->setText(QString::number(myCalculation.calculateValue(error)));
+    {
+        double result;
+        result = myCalculation.calculateValue(error);
+        if (error)
+            display->setText(tr("Math Error!"));
+        else
+            display->setText(QString::number(result));
+
+    }
 }
 
 void MainWindow::backspaceClicked()
