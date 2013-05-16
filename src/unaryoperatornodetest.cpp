@@ -172,3 +172,14 @@ void UnaryOperatorNodeTest::getValue_ln271828AndDegree_1()
 
 	CPPUNIT_ASSERT_DOUBLES_EQUAL(1, node.getValue(error), 0.0001);
 }
+
+void UnaryOperatorNodeTest::getValue_lnOfNegativeValue_error()
+{
+	UnaryOperatorNode node(UnaryOperationTypeLogarithmNaturalis, AngleTypeRadiant);
+	node.setNode(new ValueOperatorNode(-4));
+	bool error;
+
+	node.getValue(error);
+
+	CPPUNIT_ASSERT(error);
+}
