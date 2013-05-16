@@ -605,7 +605,7 @@
      </widget>
     </item>
     <item row="5" column="0">
-     <widget class="QPushButton" name="unary1Button">
+     <widget class="QPushButton" name="ansButton">
       <property name="minimumSize">
        <size>
         <width>0</width>
@@ -613,7 +613,7 @@
        </size>
       </property>
       <property name="text">
-       <string> </string>
+       <string>ans</string>
       </property>
      </widget>
     </item>
@@ -626,7 +626,7 @@
        </size>
       </property>
       <property name="text">
-       <string> </string>
+       <string/>
       </property>
      </widget>
     </item>
@@ -639,7 +639,7 @@
        </size>
       </property>
       <property name="text">
-       <string> </string>
+       <string/>
       </property>
      </widget>
     </item>
@@ -652,7 +652,7 @@
        </size>
       </property>
       <property name="text">
-       <string> </string>
+       <string/>
       </property>
      </widget>
     </item>
@@ -665,7 +665,7 @@
        </size>
       </property>
       <property name="text">
-       <string> </string>
+       <string/>
       </property>
      </widget>
     </item>
