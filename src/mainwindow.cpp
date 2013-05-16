@@ -168,7 +168,7 @@ void MainWindow::backspaceClicked()
 void MainWindow::clearClicked()
 {
 	input->setText("");
-	display->setText("");
+    display->setText("0");
 }
 
 void MainWindow::clearAllClicked()
