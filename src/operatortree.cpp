@@ -90,7 +90,7 @@ OperatorNode *OperatorTree::parseIfNotEnclosedInBrackets(const string &expressio
 	}
 	else if (unaryfunctions.size() > 0)
 		return parseUnaryOperator(expression);
-	else if (expression.find("pi") == 0)
+    else if (expression.compare("pi") == 0)
 		return new ValueOperatorNode(pi);
 	else
 		return parseValue(expression);
