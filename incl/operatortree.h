@@ -23,7 +23,7 @@ class OperatorTree
 {
 public:
 	OperatorTree(const std::string &expression);
-    OperatorTree(const std::string &expression, double lastAwnser);
+    OperatorTree(const std::string &expression, double lastAnswer);
 	~OperatorTree();
 
 	bool parsingFailed() const;

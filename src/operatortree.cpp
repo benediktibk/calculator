@@ -17,10 +17,10 @@ OperatorTree::OperatorTree(const string &expression) :
 	parse(expression);
 }
 
-OperatorTree::OperatorTree(const string &expression, double lastAwnser) :
+OperatorTree::OperatorTree(const string &expression, double lastAnswer) :
     m_rootNode(0),
     m_parsingFailed(false),
-    m_ans(lastAwnser)
+    m_ans(lastAnswer)
 {
     parse(expression);
 }
