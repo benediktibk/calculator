@@ -32,7 +32,7 @@ double UnaryOperatorNode::getValue(bool &error) const
 
     if(m_changeToDegree == true)
     {
-        nodeValue = nodeValue * 180 / (2*pi);
+        nodeValue = nodeValue * pi / 180;
     }
 
 	switch(m_operationType)
