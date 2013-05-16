@@ -22,15 +22,14 @@ private slots:
 	void dotClicked();
 	void operatorClicked();
     void unaryOperatorClicked();
-
 	void equalClicked();
-
 	void clearAllClicked();
 	void backspaceClicked();
 	void exitClicked();
 
 private:
 	void connectButtons();
+    void insertStringToInputAtCurrentCursorPosition(const QString &insertText);
 
 private:
 	Ui::MainWindow* m_ui;

@@ -54,17 +54,30 @@ void MainWindow::connectButtons()
 	connect(m_ui->inputLineEdit, SIGNAL(returnPressed()), this, SLOT(equalClicked()));
 }
 
+
+void MainWindow::insertStringToInputAtCurrentCursorPosition(const QString &insertText)
+{
+    QString inputText = input->text();
+    int cursorPosition = input->cursorPosition();
+
+    inputText.insert(cursorPosition, insertText);
+    input->setText(inputText);
+    input->setFocus();
+    input->setCursorPosition(cursorPosition + insertText.length());
+}
+
 void MainWindow::digitClicked()
 {
 	QPushButton *clickedButton = qobject_cast<QPushButton *>(sender());
-	int digitValue = clickedButton->text().toInt();
 
-	input->setText(input->text() + QString::number(digitValue));
+    insertStringToInputAtCurrentCursorPosition(clickedButton->text());
 }
 
 void MainWindow::dotClicked()
 {
-	input->setText(input->text() + ".");
+    QString clickedOperator = tr(".");
+
+    insertStringToInputAtCurrentCursorPosition(clickedOperator);
 }
 
 void MainWindow::operatorClicked()
@@ -77,15 +90,16 @@ void MainWindow::operatorClicked()
     else if (clickedOperator == tr("\367"))
         clickedOperator = tr("/");
 
-    input->setText(input->text() + clickedOperator);
+    insertStringToInputAtCurrentCursorPosition(clickedOperator);
 }
 
 void MainWindow::unaryOperatorClicked()
 {
     QPushButton *clickedButton = qobject_cast<QPushButton *>(sender());
     QString clickedOperator = clickedButton->text();
+    clickedOperator += tr("(");
 
-    input->setText(input->text() + clickedOperator + tr("("));
+    insertStringToInputAtCurrentCursorPosition(clickedOperator);
 }
 
 void MainWindow::equalClicked()
@@ -112,12 +126,16 @@ void MainWindow::equalClicked()
 void MainWindow::backspaceClicked()
 {
 	QString text = input->text();
+    int cursorPosition = input->cursorPosition();
 
 	if (text.isEmpty())
 		return;
 
-	text.chop(1);
+    text.remove(cursorPosition -1, 1);
 	input->setText(text);
+    input->setFocus();
+    input->setCursorPosition(cursorPosition - 1);
+
 }
 
 void MainWindow::clearAllClicked()
