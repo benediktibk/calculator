@@ -45,6 +45,14 @@ double UnaryOperatorNode::getValue(bool &error) const
 		return tan(nodeValue);
 	case UnaryOperationTypeExponential:
 		return exp(nodeValue);
+    case UnaryOperationTypeArcSine:
+        return asin(nodeValue);
+    case UnaryOperationTypeArcCosine:
+        return acos(nodeValue);
+    case UnaryOperationTypeArcTangens:
+        return atan(nodeValue);
+    case UnaryOperationTypeLogarithmNaturalis:
+        return log(nodeValue);
 	}
 
 	assert(false);

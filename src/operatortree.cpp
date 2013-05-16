@@ -168,9 +168,30 @@ OperatorNode *OperatorTree::parseUnaryOperator(const string &expression)
 		result = new UnaryOperatorNode(UnaryOperationTypeExponential);
 		childExpression = expression.substr(3);
 	}
-	else
+    else if (expression.find("asin") == 0)
+    {
+        result = new UnaryOperatorNode(UnaryOperationTypeArcSine);
+        childExpression = expression.substr(4);
+    }
+    else if (expression.find("acos") == 0)
+    {
+        result = new UnaryOperatorNode(UnaryOperationTypeArcCosine);
+        childExpression = expression.substr(4);
+    }
+    else if (expression.find("atan") == 0)
+    {
+        result = new UnaryOperatorNode(UnaryOperationTypeArcTangens);
+        childExpression = expression.substr(4);
+    }
+    else if (expression.find("ln") == 0)
+    {
+        result = new UnaryOperatorNode(UnaryOperationTypeLogarithmNaturalis);
+        childExpression = expression.substr(2);
+    }
+    else
+    {
 		assert(false);
-
+    }
 	OperatorNode *child = parseRecursive(childExpression);
 	result->setNode(child);
 
@@ -309,8 +330,16 @@ vector<string::const_iterator> OperatorTree::findAllUnaryFunctionsSorted(const s
 	Position.insert(Position.end(),BufPosition.begin(),BufPosition.end());
 	BufPosition=findUnaryFunctions(expression,"exp");
 	Position.insert(Position.end(),BufPosition.begin(),BufPosition.end());
-	sort(Position.begin(), Position.end());
-	return Position;
+    BufPosition=findUnaryFunctions(expression,"asin");
+    Position.insert(Position.end(),BufPosition.begin(),BufPosition.end());
+    BufPosition=findUnaryFunctions(expression,"acos");
+    Position.insert(Position.end(),BufPosition.begin(),BufPosition.end());
+    BufPosition=findUnaryFunctions(expression,"atan");
+    Position.insert(Position.end(),BufPosition.begin(),BufPosition.end());
+    BufPosition=findUnaryFunctions(expression,"ln");
+    Position.insert(Position.end(),BufPosition.begin(),BufPosition.end());
+    sort(Position.begin(), Position.end());
+    return Position;
 }
 
 
@@ -323,10 +352,18 @@ vector<string::const_iterator> OperatorTree::findUnaryFunctions(const string &ex
 	{
 		size_t foundPosition = expression.find(func, lastPosition - expression.begin());
 
-		if (foundPosition != string::npos)
-			lastPosition = expression.begin() + foundPosition;
-		else
-			lastPosition = expression.end();
+        if (foundPosition != string::npos && foundPosition==0)
+        {
+            lastPosition = expression.begin() + foundPosition;
+        }
+        else if (foundPosition != string::npos && expression[foundPosition-1]!='a')
+        {
+            lastPosition = expression.begin() + foundPosition;
+        }
+        else
+        {
+            lastPosition = expression.end();
+        }
 
 		Positions.push_back(lastPosition);
 		++lastPosition;
