@@ -16,6 +16,7 @@ MainWindow::MainWindow() :
     input->setFocus();
     m_ui->divisionButton->setText(tr("\367"));
     m_ui->multiplicateButton->setText(tr("\327"));
+    m_ui->piButton->setText(QString(QChar(0x03C0)));
 
 	connectButtons();
 }
@@ -93,6 +94,8 @@ void MainWindow::operatorClicked()
         clickedOperator = tr("*");
     else if (clickedOperator == tr("\367"))
         clickedOperator = tr("/");
+    else if (clickedOperator == QString(QChar(0x03C0)))
+        clickedOperator = tr("pi");
 
     insertStringToInputAtCurrentCursorPosition(clickedOperator);
 }
