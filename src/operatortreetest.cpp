@@ -324,47 +324,56 @@ void OperatorTreeTest::calculateValue_divisionByZero_error()
 
 void OperatorTreeTest::constructor_piTwoInARow_parsingFailed()
 {
-    string expression("pipi");
+	string expression("pipi");
 
-    OperatorTree tree(expression);
+	OperatorTree tree(expression);
 
-    CPPUNIT_ASSERT(tree.parsingFailed());
+	CPPUNIT_ASSERT(tree.parsingFailed());
 }
 
 void OperatorTreeTest::constructor_twoUnaryFunctionsInARowWithMissingClosingBracket_parsingFailed()
 {
-    string expression("sin(exp(");
+	string expression("sin(exp(");
 
-    OperatorTree tree(expression);
+	OperatorTree tree(expression);
 
-    CPPUNIT_ASSERT(tree.parsingFailed());
+	CPPUNIT_ASSERT(tree.parsingFailed());
 }
 
 void OperatorTreeTest::constructor_ansFirstUse()
 {
-    string expression("ans");
-    bool error;
+	string expression("ans");
+	bool error;
 
-    OperatorTree tree(expression, 0.0);
+	OperatorTree tree(expression, 0.0);
 
-    CPPUNIT_ASSERT_DOUBLES_EQUAL(0, tree.calculateValue(error), 0.000001);
+	CPPUNIT_ASSERT_DOUBLES_EQUAL(0, tree.calculateValue(error), 0.000001);
 }
 
 void OperatorTreeTest::constructor_ansNotFirstUseAndAdition()
 {
-    string expression("ans+2");
-    bool error;
+	string expression("ans+2");
+	bool error;
 
-    OperatorTree tree(expression, 3.0);
+	OperatorTree tree(expression, 3.0);
 
-    CPPUNIT_ASSERT_DOUBLES_EQUAL(5, tree.calculateValue(error), 0.000001);
+	CPPUNIT_ASSERT_DOUBLES_EQUAL(5, tree.calculateValue(error), 0.000001);
 }
 
 void OperatorTreeTest::constructor_ansTwoInARow_parsingFailed()
 {
-    string expression("ansans");
+	string expression("ansans");
 
-    OperatorTree tree(expression, 0.0);
+	OperatorTree tree(expression, 0.0);
 
-    CPPUNIT_ASSERT(tree.parsingFailed());
+	CPPUNIT_ASSERT(tree.parsingFailed());
+}
+
+void OperatorTreeTest::constructor_twoWhiteSpaces_notParsingFailed()
+{
+	string expression("1 - 3");
+
+	OperatorTree tree(expression, 0.0);
+
+	CPPUNIT_ASSERT(!tree.parsingFailed());
 }
