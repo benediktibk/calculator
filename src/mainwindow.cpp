@@ -42,6 +42,11 @@ void MainWindow::connectButtons()
 	connect(m_ui->bracketOpenButton, SIGNAL(clicked()), this, SLOT(operatorClicked()));
 	connect(m_ui->bracketCloseButton, SIGNAL(clicked()), this, SLOT(operatorClicked()));
 
+    connect(m_ui->exponentialButton, SIGNAL(clicked()), this, SLOT(unaryOperatorClicked()));
+    connect(m_ui->sinButton, SIGNAL(clicked()), this, SLOT(unaryOperatorClicked()));
+    connect(m_ui->cosButton, SIGNAL(clicked()), this, SLOT(unaryOperatorClicked()));
+    connect(m_ui->tanButton, SIGNAL(clicked()), this, SLOT(unaryOperatorClicked()));
+
 	connect(m_ui->equalButton, SIGNAL(clicked()), this, SLOT(equalClicked()));
 	connect(m_ui->inputLineEdit, SIGNAL(returnPressed()), this, SLOT(equalClicked()));
 }
@@ -65,6 +70,14 @@ void MainWindow::operatorClicked()
 	QString clickedOperator = clickedButton->text();
 
 	input->setText(input->text() + clickedOperator);
+}
+
+void MainWindow::unaryOperatorClicked()
+{
+    QPushButton *clickedButton = qobject_cast<QPushButton *>(sender());
+    QString clickedOperator = clickedButton->text();
+
+    input->setText(input->text() + clickedOperator + tr("("));
 }
 
 void MainWindow::equalClicked()

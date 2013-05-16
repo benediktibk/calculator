@@ -489,7 +489,7 @@
      </widget>
     </item>
     <item row="5" column="0">
-     <widget class="QPushButton" name="unaryButton1">
+     <widget class="QPushButton" name="exponentialButton">
       <property name="minimumSize">
        <size>
         <width>0</width>
@@ -497,12 +497,12 @@
        </size>
       </property>
       <property name="text">
-       <string/>
+       <string>exp</string>
       </property>
      </widget>
     </item>
     <item row="6" column="0">
-     <widget class="QPushButton" name="unaryButton2">
+     <widget class="QPushButton" name="sinButton">
       <property name="minimumSize">
        <size>
         <width>0</width>
@@ -510,12 +510,12 @@
        </size>
       </property>
       <property name="text">
-       <string/>
+       <string>sin</string>
       </property>
      </widget>
     </item>
     <item row="7" column="0">
-     <widget class="QPushButton" name="unaryButton3">
+     <widget class="QPushButton" name="cosButton">
       <property name="minimumSize">
        <size>
         <width>0</width>
@@ -523,12 +523,12 @@
        </size>
       </property>
       <property name="text">
-       <string/>
+       <string>cos</string>
       </property>
      </widget>
     </item>
     <item row="8" column="0">
-     <widget class="QPushButton" name="unaryButton4">
+     <widget class="QPushButton" name="tanButton">
       <property name="minimumSize">
        <size>
         <width>0</width>
@@ -536,7 +536,7 @@
        </size>
       </property>
       <property name="text">
-       <string/>
+       <string>tan</string>
       </property>
      </widget>
     </item>
