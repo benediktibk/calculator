@@ -47,15 +47,30 @@ double UnaryOperatorNode::getValue(bool &error) const
 		result = exp(nodeValue);
 		break;
 	case UnaryOperationTypeArcSine:
-		result = asin(nodeValue);
+        if ((nodeValue < -1) || (nodeValue > 1))
+        {
+            error = true;
+            return 0;
+        }
+        result = asin(nodeValue);
 		break;
 	case UnaryOperationTypeArcCosine:
+        if ((nodeValue < -1) || (nodeValue > 1))
+        {
+            error = true;
+            return 0;
+        }
 		result = acos(nodeValue);
 		break;
 	case UnaryOperationTypeArcTangens:
 		result = atan(nodeValue);
 		break;
 	case UnaryOperationTypeLogarithmNaturalis:
+        if (nodeValue < 0)
+        {
+            error = true;
+            return 0;
+        }
 		result = log(nodeValue);
 		break;
 	}
