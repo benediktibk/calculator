@@ -149,9 +149,9 @@ void MainWindow::equalClicked()
             display->setText(QString::number(result,'g' ,9));
 
             history->append(input->text());
-            history->insertPlainText("=");
-            history->insertPlainText(display->text());
 
+
+            m_lastAnswer = result;
         }
 
     }
