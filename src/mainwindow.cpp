@@ -5,14 +5,16 @@
 
 MainWindow::MainWindow() :
 	QMainWindow(0),
-	m_ui(new Ui::MainWindow),
+    m_ui(new Ui::MainWindow),
 	m_lastAnswer(0)
 {
 	m_ui->setupUi(this);
 	input = m_ui->inputLineEdit;
 	display = m_ui->displayLineEdit;
+    history = m_ui->historyTextEdit;
 
-	this->setFixedSize(550, 440);
+
+    this->setFixedSize(550, 440);
 	display->setText(tr("0"));
 	input->setFocus();
 	m_ui->divisionButton->setText(tr("\367"));
@@ -20,12 +22,12 @@ MainWindow::MainWindow() :
 	m_ui->piButton->setText(QString(QChar(0x03C0)));
 	m_ui->backspaceButton->setText(QString(QChar(0x2190)));
 
-	connectButtons();
+    connectButtons();
 }
 
 void MainWindow::connectButtons()
 {
-	connect(m_ui->backspaceButton, SIGNAL(clicked()), this, SLOT(backspaceClicked()));
+    connect(m_ui->backspaceButton, SIGNAL(clicked()), this, SLOT(backspaceClicked()));
 	connect(m_ui->clearAllButton, SIGNAL(clicked()), this, SLOT(clearAllClicked()));
 	connect(m_ui->clearButton, SIGNAL(clicked()), this, SLOT(clearClicked()));
 	connect(m_ui->exitButton, SIGNAL(clicked()), this, SLOT(exitClicked()));
@@ -66,13 +68,14 @@ void MainWindow::connectButtons()
 
 	connect(m_ui->equalButton, SIGNAL(clicked()), this, SLOT(equalClicked()));
 	connect(m_ui->inputLineEdit, SIGNAL(returnPressed()), this, SLOT(equalClicked()));
+    connect(m_ui->clearHistoryButton, SIGNAL(clicked()), this, SLOT(clearHistoryClicked()));
 }
 
 
 void MainWindow::insertStringToInputAtCurrentCursorPosition(const QString &insertText)
 {
-	QString inputText = input->text();
-	int cursorPosition = input->cursorPosition();
+    QString inputText = input->text();
+    int cursorPosition = input->cursorPosition();
 
 	inputText.insert(cursorPosition, insertText);
 	input->setText(inputText);
@@ -120,18 +123,18 @@ void MainWindow::unaryOperatorClicked()
 
 void MainWindow::equalClicked()
 {
-	const std::string myCalculationString(input->text().toStdString());
+    const std::string myCalculationString(input->text().toStdString());
 	AngleType angleType;
 	bool error;
 
-	if (m_ui->degreeRadioButton->isChecked())
+    if (m_ui->degreeRadioButton->isChecked())
 		angleType = AngleTypeDegree;
 	else if (m_ui->radiantRadioButton->isChecked())
 		angleType = AngleTypeRadiant;
 	else
 		assert(false);
 
-	OperatorTree myCalculation(myCalculationString, m_lastAnswer, angleType);
+    OperatorTree myCalculation(myCalculationString, m_lastAnswer, angleType);
 
 	if (myCalculation.parsingFailed())
 		display->setText(tr("Syntax Error!"));
@@ -144,10 +147,14 @@ void MainWindow::equalClicked()
 		else
 		{
             display->setText(QString::number(result,'g' ,9));
-			m_lastAnswer = result;
-		}
 
-	}
+            history->append(input->text());
+            history->insertPlainText("=");
+            history->insertPlainText(display->text());
+
+        }
+
+    }
 }
 
 void MainWindow::backspaceClicked()
@@ -182,3 +189,9 @@ void MainWindow::exitClicked()
 {
 	this->close();
 }
+
+void MainWindow::clearHistoryClicked()
+{
+    history->clear();
+}
+

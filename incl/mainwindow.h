@@ -2,12 +2,17 @@
 #define MAINWINDOWCONTROLLER_H
 
 #include <QMainWindow>
+#include <vector>
+#include <string>
+
+using namespace std;
 
 namespace Ui
 {
 	class MainWindow;
 }
 class QLineEdit;
+class QTextEdit;
 
 class MainWindow :
 		public QMainWindow
@@ -15,10 +20,9 @@ class MainWindow :
 	Q_OBJECT
 
 public:
-	MainWindow();
-
+    MainWindow();
 private slots:
-	void digitClicked();
+    void digitClicked();
 	void dotClicked();
 	void operatorClicked();
     void unaryOperatorClicked();
@@ -27,15 +31,18 @@ private slots:
 	void clearAllClicked();
 	void backspaceClicked();
 	void exitClicked();
+    void clearHistoryClicked();
 
 private:
-	void connectButtons();
+    void connectButtons();
     void insertStringToInputAtCurrentCursorPosition(const QString &insertText);
 
 private:
-	Ui::MainWindow* m_ui;
+    Ui::MainWindow* m_ui;
 	QLineEdit *input;
 	QLineEdit *display;
+    QTextEdit *history;
+
     double m_lastAnswer;
 };
 
