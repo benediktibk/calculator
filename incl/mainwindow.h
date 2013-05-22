@@ -31,7 +31,6 @@ private slots:
 	void clearAllClicked();
 	void backspaceClicked();
 	void exitClicked();
-    void clearHistoryClicked();
 
 private:
     void connectButtons();

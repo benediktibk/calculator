@@ -724,16 +724,6 @@
       </property>
      </widget>
     </item>
-    <item row="2" column="0" rowspan="2" colspan="5">
-     <widget class="QTextEdit" name="historyTextEdit">
-      <property name="enabled">
-       <bool>true</bool>
-      </property>
-      <property name="readOnly">
-       <bool>true</bool>
-      </property>
-     </widget>
-    </item>
     <item row="9" column="1">
      <widget class="QPushButton" name="exponentialButton">
       <property name="minimumSize">
@@ -808,20 +798,13 @@
       </property>
      </widget>
     </item>
-    <item row="2" column="5" rowspan="2">
-     <widget class="QPushButton" name="clearHistoryButton">
+    <item row="2" column="0" rowspan="2" colspan="6">
+     <widget class="QTextEdit" name="historyTextEdit">
       <property name="enabled">
        <bool>true</bool>
       </property>
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-      <property name="text">
-       <string>Clear 
-History</string>
+      <property name="readOnly">
+       <bool>true</bool>
       </property>
      </widget>
     </item>

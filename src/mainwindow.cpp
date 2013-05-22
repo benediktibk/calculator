@@ -68,7 +68,6 @@ void MainWindow::connectButtons()
 
 	connect(m_ui->equalButton, SIGNAL(clicked()), this, SLOT(equalClicked()));
 	connect(m_ui->inputLineEdit, SIGNAL(returnPressed()), this, SLOT(equalClicked()));
-    connect(m_ui->clearHistoryButton, SIGNAL(clicked()), this, SLOT(clearHistoryClicked()));
 }
 
 
@@ -183,6 +182,7 @@ void MainWindow::clearAllClicked()
 	display->setText("0");
 	input->setText("");
 	m_lastAnswer = 0;
+    history->clear();
 }
 
 void MainWindow::exitClicked()
@@ -190,8 +190,5 @@ void MainWindow::exitClicked()
 	this->close();
 }
 
-void MainWindow::clearHistoryClicked()
-{
-    history->clear();
-}
+
 
