@@ -14,7 +14,7 @@ MainWindow::MainWindow() :
     history = m_ui->historyTextEdit;
 
 
-    this->setFixedSize(550, 440);
+    this->setFixedSize(550, 524);
 	display->setText(tr("0"));
 	input->setFocus();
 	m_ui->divisionButton->setText(tr("\367"));
