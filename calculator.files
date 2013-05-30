@@ -28,3 +28,4 @@ incl/constant.h
 incl/operatornodestub.h
 src/operatornodestub.cpp
 incl/angletype.h
+LICENSE.txt
